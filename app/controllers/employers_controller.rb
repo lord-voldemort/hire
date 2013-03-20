@@ -11,7 +11,8 @@ class EmployersController < ApplicationController
     @employers = Employer.all
   end
   def show
-
+    @students = Student.all
+    @employer = Employer.find(params[:id])
   end
 
 end

@@ -1,17 +1,16 @@
 <%= form_for @student do |s| %>
 
-<h1>New Student</h1>
   <div>
     <%= s.label :name %>
-    <%= s.text_field :name %>
+    <%= s.text_field :name, :placeholder => :name%>
   </div>
   <div>
     <%= s.label :preferred_industry %>
-    <%= s.text_field :preferred_industry %>
+    <%= s.text_field :preferred_industry, :placeholder => :preferred_industry %>
   </div>
   <div>
     <%= s.label :preferred_location %>
-    <%= s.text_field :preferred_location %>
+    <%= s.text_field :preferred_location, :placeholder => :preferred_location %>
   </div>
   <div>
     <%= s.submit %>

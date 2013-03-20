@@ -1,0 +1,10 @@
+<h1>Student Profile</h1>
+
+<ul>
+  <h3>Name: <%= @student.name %> </h3>
+  <h3>Preferred Industry: <%= @student.preferred_industry %> </h3>
+  <h3>Preferred Location: <%= @student.preferred_location %> </h3>
+</ul>
+
+<%= link_to 'Edit', edit_student_path(@student) %> |
+<%= link_to 'Back', students_path %>
