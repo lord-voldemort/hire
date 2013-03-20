@@ -7,8 +7,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<%= link_to 'Employers', employers_path %> | 
+<%= link_to 'Students', students_path %>
 <%= yield %>
-
+<br>
+<%= link_to 'Employers', employers_path %> | 
+<%= link_to 'Students', students_path %>
 </body>
 </html>
