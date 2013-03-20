@@ -4,7 +4,7 @@
 
   <% @students.each do |s| %>
     <tr>
-      <%= s.name %> <br />
+      <%= link_to s.name, student_path(s.id) %> <br>
     </tr>
     <% end%>
   
@@ -12,4 +12,4 @@
 
 <br />
 
-<%#= link_to 'New Student', new_student_path %>
+<%= link_to 'New Student', new_student_path %>
