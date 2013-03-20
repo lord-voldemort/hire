@@ -1,0 +1,7 @@
+<h1> Edit Employer</h1>
+
+<%= render "form" %>
+<br>
+<%= link_to 'Show', employer_path(@employer) %> |
+<%= link_to 'Delete', @employer, method: :delete, data: { confirm: "Are you sure?" } %> |
+<%= link_to 'Back', employers_path %>

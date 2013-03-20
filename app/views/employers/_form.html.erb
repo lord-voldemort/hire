@@ -1,0 +1,23 @@
+<%= form_for @employer do |e| %>
+
+  <div>
+    <%= e.label :name %>
+    <%= e.text_field :name %>
+  </div>
+  <div>
+    <%= e.label :industry %>
+    <%= e.text_field :industry %>
+  </div>
+  <div>
+    <%= e.label :location %>
+    <%= e.text_field :location %>
+  </div>
+  <div>
+    <%= e.label :est_year %>
+    <%= e.text_field :est_year %>
+  </div>
+  <div>
+    <%= e.submit %>
+  </div>
+
+<% end %>
