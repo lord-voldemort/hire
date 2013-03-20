@@ -8,6 +8,9 @@
   <% @employers.sort.each do |e| %>
       <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
         <td>
+        <%= check_box_tag "Interested?"%> <br>
+        </td>
+        <td>
         <%= link_to e.name, employer_path(e.id) %> <br>
         </td>
         <td><%= e.industry %>
