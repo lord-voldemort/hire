@@ -5,7 +5,7 @@
   <th>Industry</th>
   <th>Location</th>
   <% @students.sort.each do |s| %>
-      <tr>
+      <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
         <td>
         <%= link_to s.name, student_path(s.id) %> <br>
         </td>

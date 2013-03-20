@@ -6,7 +6,7 @@
   <th>Location</th>
   <th>Year Established</th>
   <% @employers.sort.each do |e| %>
-      <tr>
+      <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
         <td>
         <%= link_to e.name, employer_path(e.id) %> <br>
         </td>
