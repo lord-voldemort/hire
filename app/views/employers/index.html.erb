@@ -1,0 +1,13 @@
+<h1>Listing Employers</h1>
+
+<table id="employers_list">
+
+  <% @employers.each do |e| %>
+    <tr>
+      <%= e.name %> <br />
+    </tr>
+    <% end%>
+  
+</table>
+
+<br />

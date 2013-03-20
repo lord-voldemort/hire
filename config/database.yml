@@ -18,7 +18,7 @@ development:
   database: interview_app_development
   pool: 5
   host: localhost
-  username: flatironschool
+  username: AlexGorski
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -39,13 +39,5 @@ development:
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
-test:
-  adapter: postgresql
-  encoding: unicode
-  database: interview_app_test
-  pool: 5
-  host: localhost
-  username: flatironschool
-  password:
 
 
