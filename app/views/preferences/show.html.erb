@@ -1,8 +1,8 @@
 <h1> Show Preference </h1>
 
 <ul>
-  <h3>Student: <%= @preference.student_id %> </h3>
-  <h3>Employer: <%= @preference.employer_id %> </h3>
+  <h3>Student: <%= Student.find(@preference.student_id).name %> </h3>
+  <h3>Employer: <%= Employer.find(@preference.employer_id).name %> </h3>
   <h3>Interested Party: <%= @preference.interest_expressed_by %> </h3>
   <h3>Date: <%= @preference.updated_at %> </h3>
 </ul>
