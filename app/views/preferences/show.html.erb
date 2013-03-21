@@ -1,1 +1,14 @@
-show.html.erb
+<h1> Show Preference </h1>
+
+<ul>
+  <h3>Student: <%= @preference.student_id %> </h3>
+  <h3>Employer: <%= @preference.employer_id %> </h3>
+  <h3>Interested Party: <%= @preference.interest_expressed_by %> </h3>
+  <h3>Date: <%= @preference.updated_at %> </h3>
+</ul>
+
+
+
+<%= link_to 'Edit', edit_preference_path(@preference[:id]) %> |
+<%= link_to 'Delete', @preference, method: :delete, data: { confirm: "Are you sure?" } %> |
+<%#= link_to 'Back', preferences_path %>

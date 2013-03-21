@@ -2,18 +2,18 @@
 
   <div>
     <%= p.label :student_id %>
-    <%= select("name", "student_id", Student.all.collect {|s| [s.name, s.id]}, {:prompt => 'Select Student'}) %>
+    <%= p.select(:student_id, Student.all.collect {|s| [s.name, s.id]}, {:prompt => 'Select Student'}) %>
   </div>
   <div>
     <%= p.label :employer_id %>
-    <%= select("name", "employer_id", Employer.all.collect {|e| [e.name, e.id]}, {:prompt => 'Select Employer'}) %>
+    <%= p.select(:employer_id, Employer.all.collect {|e| [e.name, e.id]}, {:prompt => 'Select Employer'}) %>
   </div>
   <div>
     <%= p.label :interest_expressed_by %><br>
     Student
-    <%= radio_button_tag :interest_expressed_by, value = "Student" %>  |  
+    <%= p.radio_button :interest_expressed_by, value = "Student" %>  |  
     Employer
-    <%= radio_button_tag :interest_expressed_by, value = "Employer" %>
+    <%= p.radio_button :interest_expressed_by, value = "Employer" %>
   </div>
 
   <div>
