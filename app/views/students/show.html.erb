@@ -4,8 +4,34 @@
   <h3>Name: <%= @student.name %> </h3>
   <h3>Preferred Industry: <%= @student.preferred_industry %> </h3>
   <h3>Preferred Location: <%= @student.preferred_location %> </h3>
+
+  <div id = "preferences_student_view">
+    <% @student.employers.collect {|e| e.id}.each do |n| %>
+      <% if Preference.find_by_employer_id(n).interest_expressed_by == "Employer"%>
+    <h3>Companies Interested In Student: </h3>
+        <li> <%= Employer.find(n).name %> </li>
+      <% else %>
+    <h3>Student's Companies of Interest: </h3>
+        <li> <%= Employer.find(n).name %> </li>
+      <% end %>
+    <% end %> 
+  </div>
+
 </ul>
 
 <%= link_to 'Edit', edit_student_path(@student) %> |
 <%= link_to 'Delete', @student, method: :delete, data: { confirm: "Are you sure?" } %> |
 <%= link_to 'Back', students_path %>
+
+<!-- 
+  <h3>Companies Interested In Student: </h3>
+    <p>
+      <%# @student.employers.collect {|e| e.id}.each do |n| %>
+        <%# if Preference.find_by_employer_id(n).interest_expressed_by == "Employer"%>
+          <li> <%#= Employer.find(n).name %> </li>
+        <%# else %>
+        
+        <%# end %>
+      <%# end %> 
+    </p>
+ -->
