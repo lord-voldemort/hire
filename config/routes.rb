@@ -2,6 +2,7 @@ InterviewApp::Application.routes.draw do
 
   resources :employers
   resources :students
+  resources :preferences
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
