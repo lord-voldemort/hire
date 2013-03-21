@@ -15,12 +15,22 @@ class PreferencesController < ApplicationController
   end
   
   def edit
+    @preference = Preference.find(params[:id])
   end
   
   def update
+    @preference = Preference.find(params[:id])
+    if @preference.update_attributes(params[:preference])
+      redirect_to action: :show, id: @preference.id
+    else
+      render 'edit'
+    end
   end
   
   def destroy
+    @preference = Preference.find(params[:id])
+    @preference.destroy
+    redirect_to preferences_path
   end
 
 end

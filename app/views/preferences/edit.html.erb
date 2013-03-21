@@ -1,1 +1,7 @@
-edit.html.erb
+<h1> Edit Preference</h1>
+
+<%= render "form" %>
+<br>
+<%= link_to 'Show', preference_path(@preference) %> |
+<%= link_to 'Delete', @preference, method: :delete, data: { confirm: "Are you sure?" } %> |
+<%= link_to 'Back', preferences_path %>
