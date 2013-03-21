@@ -1,1 +1,36 @@
-index.html.erb
+<h1>Preference List</h1>
+
+<table id="preference_list">
+  <th>Preference #</th>
+  <th>Student</th>
+  <th>Employer</th>
+  <th>Interested Party</th>
+  <th>Last Updated</th>
+
+  <% @preferences.sort.each do |p| %>
+      <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+        
+        <td>
+          <%= link_to p.id, preference_path(p.id) %> <br>
+        </td>
+        <td>
+          <%= link_to Student.find(p.student_id).name, student_path(p.student_id) %> <br>
+        </td>
+        <td>
+          <%= link_to Employer.find(p.employer_id).name, employer_path(p.employer_id) %> <br> 
+        </td>
+        <td>
+          <%= p.interest_expressed_by %>
+        </td>
+        <td>
+          <%= p.updated_at %>
+        </td>
+
+      </tr>
+  <% end%>
+  
+</table>
+
+<br />
+
+<%= link_to 'New preference', new_preference_path %>
