@@ -8,19 +8,18 @@
 
   <div id = "preferences_employer_view">
     <h3>Students Interested In Company: </h3>
-      <% @employer.students.collect {|s| s.id}.each do |n| %>
-        <% if Preference.find_by_student_id(n).interest_expressed_by == "Student"%>
-          <li> <%= Student.find(n).name %> </li>
-        <% else %>
+      <% Preference.where(:employer_id => @employer.id).each do |n| %>
+        <% if Preference.find(n.id).interest_expressed_by == "Student"%>
+          <li> <%= Student.find(n.student_id).name %> </li>
+          <% else %>
         <% end %>
       <% end %>
-    
-
+          
     <h3>Company's Students of Interest: </h3>
-        <% @employer.students.collect {|s| s.id}.each do |n| %>
-        <% if Preference.find_by_student_id(n).interest_expressed_by == "Employer"%>
-          <li> <%= Student.find(n).name %> </li>
-        <% else %>
+        <% Preference.where(:employer_id => @employer.id).each do |n| %>
+        <% if Preference.find(n.id).interest_expressed_by == "Employer"%>
+          <li> <%= Student.find(n.student_id).name %> </li>
+          <% else %>
         <% end %>
       <% end %>
   </div>
