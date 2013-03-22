@@ -5,7 +5,7 @@ InterviewApp::Application.routes.draw do
   resources :preferences
 
   get '/matches' => 'matches#index'
-
+get '/match' => 'matches#show'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

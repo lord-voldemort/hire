@@ -2,6 +2,7 @@
 <table>
   <th>Student</th>
   <th>Employer</th>
+  <th>Create Interview</th>
 
   <% tracker = [] %>
   <% @preferences.sort.each do |p| %>  
@@ -14,8 +15,9 @@
           <% new_pair = [s.name, e.name] %>
             <% unless tracker.include? new_pair %>
               <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-                <td>  <%= s.name  %> </td> 
-                <td> <%= e.name %></td>
+                <td>  <%= link_to s.name, student_path(s.id)  %> </td> 
+                <td> <%= link_to e.name, employer_path(e.id) %></td>
+                <td> <%=  %> </td>
               </tr>
               <% tracker << new_pair%>
             <% end %>
