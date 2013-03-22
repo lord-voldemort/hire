@@ -1,0 +1,26 @@
+<h1>Matches</h1>
+<table>
+  <th>Student</th>
+  <th>Employer</th>
+
+  <% tracker = [] %>
+  <% @preferences.sort.each do |p| %>  
+      <% s = Student.find(p.student_id) %> 
+      <% e = Employer.find(p.employer_id) %> 
+      <% i = p.interest_expressed_by %> 
+      
+      <% Preference.where(:student_id => s.id, :employer_id => e.id).each do |n| %>        
+        <% if n.interest_expressed_by != i %>
+          <% new_pair = [s.name, e.name] %>
+            <% unless tracker.include? new_pair %>
+              <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+                <td>  <%= s.name  %> </td> 
+                <td> <%= e.name %></td>
+              </tr>
+              <% tracker << new_pair%>
+            <% end %>
+        <% else %>
+        <% end %>
+      <% end %>
+  <% end %>
+</table>

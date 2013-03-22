@@ -4,6 +4,8 @@ InterviewApp::Application.routes.draw do
   resources :students
   resources :preferences
 
+  get '/matches' => 'matches#index'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
