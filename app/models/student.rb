@@ -8,4 +8,9 @@ class Student < ActiveRecord::Base
   has_many :employers, :through => :preferences, :dependent => :destroy
 
   accepts_nested_attributes_for :employers 
+
+
+  validates :name, :presence => true
+  validates :preferred_industry, :presence => true
+  validates :preferred_location, :presence => true
 end

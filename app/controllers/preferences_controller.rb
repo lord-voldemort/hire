@@ -5,10 +5,14 @@ class PreferencesController < ApplicationController
   end
 
   def create
-    debugger
+
     @preference = Preference.new(params[:preference])
-    @preference.save
+    if @preference.save
     redirect_to preference_path(@preference.id)
+    else
+      flash.now[:alert]
+    render 'new'
+    end
   end
   
   def index

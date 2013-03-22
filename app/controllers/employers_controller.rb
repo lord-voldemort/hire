@@ -5,8 +5,11 @@ class EmployersController < ApplicationController
 
   def create
     @employer = Employer.new(params[:employer])
-    @employer.save
-    redirect_to employers_path
+    if @employer.save
+    redirect_to employers_path(@employer.id)
+    else
+    render 'new'
+    end 
   end
 
   def index

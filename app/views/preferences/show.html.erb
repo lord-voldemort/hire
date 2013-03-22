@@ -8,7 +8,7 @@
 </ul>
 
 
-
+<%= link_to 'New Preference', new_preference_path %> |
 <%= link_to 'Edit', edit_preference_path(@preference[:id]) %> |
 <%= link_to 'Delete', @preference, method: :delete, data: { confirm: "Are you sure?" } %> |
 <%= link_to 'Back', preferences_path %>

@@ -5,8 +5,11 @@ class StudentsController < ApplicationController
 
   def create
     @student = Student.new(params[:student])
-    @student.save
-    redirect_to root_path
+    if @student.save
+    redirect_to student_path(@student.id)
+    else
+      render 'new'
+    end
   end
 
   def index
