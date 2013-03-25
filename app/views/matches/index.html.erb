@@ -4,25 +4,11 @@
   <th>Employer</th>
   <th>Create Interview</th>
 
-  <% tracker = [] %>
-  <% @preferences.sort.each do |p| %>  
-      <% s = Student.find(p.student_id) %> 
-      <% e = Employer.find(p.employer_id) %> 
-      <% i = p.interest_expressed_by %> 
-      
-      <% Preference.where(:student_id => s.id, :employer_id => e.id).each do |n| %>        
-        <% if n.interest_expressed_by != i %>
-          <% new_pair = [s.name, e.name] %>
-            <% unless tracker.include? new_pair %>
-              <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-                <td>  <%= link_to s.name, student_path(s.id)  %> </td> 
-                <td> <%= link_to e.name, employer_path(e.id) %></td>
-                <td> <%=  %> </td>
-              </tr>
-              <% tracker << new_pair%>
-            <% end %>
-        <% else %>
-        <% end %>
-      <% end %>
+  <% @matches.each do |m| %>  
+    <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+      <td> <%= link_to m[0], student_path(m[2])  %> </td> 
+      <td> <%= link_to m[1], employer_path(m[3]) %></td>
+      <td> <%=  %> </td>
+    </tr>
   <% end %>
 </table>

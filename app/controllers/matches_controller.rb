@@ -3,7 +3,7 @@ def show
 end
 
 def index
-@preferences = Preference.all
+  @matches = Preference.find_matches
 end
 
 end
