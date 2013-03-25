@@ -18,7 +18,7 @@ development:
   database: interview_app_development
   pool: 5
   host: localhost
-  username: WallisWT
+  username: AlexGorski
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
