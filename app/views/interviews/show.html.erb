@@ -1,0 +1,18 @@
+<h1> Interview </h1>
+
+<ul>
+  <h3>Student: <%= Student.find(@interview.student_id).name %> </h3>
+  <h3>Employer: <%= Employer.find(@interview.employer_id).name %> </h3>
+  <h3>Date & Time: <%= @interview.interview_date %> </h3>
+  <h3>Location: <%= @interview.interview_location %> </h3>
+  <h3>Status: <%= @interview.status %> </h3>
+  <h3>Follow Up: <%= @interview.follow_up %> </h3>
+  <h3>Last Updated: <%= @interview.updated_at %> </h3>
+
+</ul>
+
+
+<%= link_to 'New Interview', new_interview_path %> |
+<%= link_to 'Edit', edit_interview_path(@interview[:id]) %> |
+<%= link_to 'Delete', @interview, method: :delete, data: { confirm: "Are you sure?" } %> |
+<%= link_to 'Back', interviews_path %>

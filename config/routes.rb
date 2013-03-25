@@ -3,6 +3,7 @@ InterviewApp::Application.routes.draw do
   resources :employers
   resources :students
   resources :preferences
+  resources :interviews
 
   get '/matches' => 'matches#index'
 

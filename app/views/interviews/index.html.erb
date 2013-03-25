@@ -1,0 +1,48 @@
+<h1>Interviews List</h1>
+<%= link_to 'Add New Interview', new_interview_path %>
+<table id="interview_list">
+  <th>Interview #</th>
+  <th>Student</th>
+  <th>Employer</th>
+  <th>Inteview Date</th>
+  <th>Interview Location</th>
+  <th>Status</th>
+  <th>Follow Up</th>
+  <th> Last Update</th>
+
+  <% @interviews.sort.each do |i| %>
+      <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+        
+        <td>
+          <%= link_to i.id, interview_path(i.id) %> <br>
+        </td>
+        <td>
+          <%= link_to Student.find(i.student_id).name, student_path(i.student_id) %> <br>
+        </td>
+        <td>
+          <%= link_to Employer.find(i.employer_id).name, employer_path(i.employer_id) %> <br> 
+        </td>
+        <td>
+          <%= i.interview_date %>
+        </td>
+        <td>
+          <%= i.interview_location %>
+        </td>
+        <td>
+          <%= i.status %>
+        </td>
+        <td>
+          <%= i.follow_up %>
+        </td>
+        <td>
+          <%= i.updated_at %>
+        </td>
+
+      </tr>
+  <% end%>
+  
+</table>
+
+<br />
+
+<%= link_to 'New Interview', new_interview_path %>
