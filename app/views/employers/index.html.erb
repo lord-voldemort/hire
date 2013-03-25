@@ -5,6 +5,9 @@
   <th>Industry</th>
   <th>Location</th>
   <th>Year Established</th>
+  <th>Description</th>
+  <th>Funding</th>
+  <th># Employees</th>
   <% @employers.sort.each do |e| %>
       <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
         
@@ -16,6 +19,12 @@
         <td><%= e.location %>
         </td>
         <td><%= e.est_year %>
+        </td>
+        <td><%= e.description %>
+        </td>
+        <td><%= e.funding %>
+        </td>
+        <td><%= e.number_of_employees %>
         </td>
       </tr>
   <% end%>
