@@ -4,10 +4,8 @@
   <th>Interview #</th>
   <th>Student</th>
   <th>Employer</th>
-  <th>Inteview Date</th>
-  <th>Interview Location</th>
   <th>Status</th>
-  <th>Follow Up</th>
+  <th>Interview Appt</th>
   <th> Last Update</th>
 
   <% @interviews.sort.each do |i| %>
@@ -23,17 +21,26 @@
           <%= link_to Employer.find(i.employer_id).name, employer_path(i.employer_id) %> <br> 
         </td>
         <td>
-          <%= i.interview_date %>
-        </td>
-        <td>
-          <%= i.interview_location %>
-        </td>
-        <td>
           <%= i.status %>
         </td>
         <td>
-          <%= i.follow_up %>
+          <table>
+            <% i.interview_appts.each do |ia| %>
+            
+              <tr> 
+                <td><%= ia.date_time %></td> 
+                <td><%= ia.type %></td> 
+                <td><%= ia.location %> |</td> 
+                <td><%= ia.interviewer %></td> 
+                <td><%= ia.comments %></td> 
+                <td><%= ia.follow_up %></td> 
+              </tr>
+            <% end %>
+          </table>
+
         </td>
+        
+       
         <td>
           <%= i.updated_at %>
         </td>
@@ -45,4 +52,5 @@
 
 <br />
 
-<%= link_to 'New Interview', new_interview_path %>
+<%= link_to 'Add New Interview', new_interview_path %>
+      
