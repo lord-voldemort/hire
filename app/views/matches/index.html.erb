@@ -6,9 +6,17 @@
 
   <% @matches.each do |m| %>  
     <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-      <td> <%= link_to m[0], student_path(m[2])  %> </td> 
-      <td> <%= link_to m[1], employer_path(m[3]) %></td>
-      <td> <%=  %> </td>
+      <td> <%= hidden_field_tag :student_id, m[2] %> 
+        <%=link_to m[0], student_path(m[2])  %> </td> 
+      
+      <td> <%= hidden_field_tag :employer_id, m[3] %>
+        <%= link_to m[1], employer_path(m[3]) %></td>
+        <% @interview = Interview.new(:student_id => m[2], :employer_id => m[3]) %>
+      
+      <td> <%= link_to "Create Interview", new_interview_path(:interview =>{:student_id => @interview.student_id, :employer_id => @interview.employer.id,:interview_date => "TBD", :interview_location => "TBD", :status => "Active"}) %> </td>
+      <td> <%#= link_to "Create Interview", action: :create, method: :post, :id => Interview.all.size, controller: :interviews %> </td>
+      <%# raise interview: %>
     </tr>
   <% end %>
 </table>
+
