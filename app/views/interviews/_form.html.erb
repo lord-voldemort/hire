@@ -1,7 +1,9 @@
 <%= form_for @interview do |i| %>
-
-  <div>
-    <%= i.label :student_id %>
+  
+  <% @interview.errors.messages.each do |msg| %>
+  <P class="error_message"><%= msg[1][0] %></P>
+      <% end %>
+   <div> <%= i.label :student_id %>
     <%= i.select(:student_id, Student.all.collect {|s| [s.name, s.id]}, {:prompt => 'Select Student'}) %>
   </div>
   
@@ -23,7 +25,7 @@
         </div>
      
         <%= ia.label :purpose %>
-        <%= ia.text_field :purpose %>
+        <%= ia.select(:purpose, ["Cultural", "Technical", "Programming", "Other"]) %>
 
         <%= ia.label :location %>
         <%= ia.text_field :location %>
