@@ -3,7 +3,7 @@
 <ul>
   <h3>Student: <%= Student.find(@interview.student_id).name %> </h3>
   <h3>Employer: <%= Employer.find(@interview.employer_id).name %> </h3>
-  <h3>Date & Time: <%= @interview.interview_date %> </h3>
+  <h3>Date & Time: <%= @interview.interview_appts[0].date_time %> </h3>
   <h3>Location: <%= @interview.interview_location %> </h3>
   <h3>Status: <%= @interview.status %> </h3>
   <h3>Follow Up: <%= @interview.follow_up %> </h3>

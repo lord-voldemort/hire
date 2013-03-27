@@ -1,10 +1,25 @@
 class InterviewsController < ApplicationController
   def new
     @interview = Interview.new(params[:interview])
+    3.times do
+      @interview.interview_appts.build
+  end
   end
 
   def create
+   
+    # params[:interview][:interview_appts]["date_time"] = (params[:interview][:interview_appts]["date_time(1i)"] +"-"+ params[:interview][:interview_appts]["date_time(2i)"] +"-"+ params[:interview][:interview_appts]["date_time(3i)"] +"-"+ params[:interview][:interview_appts]["date_time(4i)"] +":"+ params[:interview][:interview_appts]["date_time(5i)"])
+    # params[:interview][:interview_appts].delete("date_time(1i)")
+    # params[:interview][:interview_appts].delete("date_time(2i)")
+    # params[:interview][:interview_appts].delete("date_time(3i)")
+    # params[:interview][:interview_appts].delete("date_time(4i)")
+    # params[:interview][:interview_appts].delete("date_time(5i)")
+    #raise params.inspect
     @interview = Interview.new(params[:interview])
+    debugger
+    #@interview.interview_appts.build(params[:interview][:interview_appts])
+    
+    
     if @interview.save
     redirect_to interview_path(@interview.id)
     else

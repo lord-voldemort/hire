@@ -1,3 +1,11 @@
 // Place all the styles related to the interviews controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.interview_appointment{
+  padding: 5px;
+  margin-left: 20px;
+}
+
+.date_time_select select{
+  width: 100px;
+}
