@@ -18,7 +18,7 @@
         <%= m[4] %>
       </td>
 
-      <td> <%= link_to "Create Interview", new_interview_path(:interview =>{:student_id => @interview.student_id, :employer_id => @interview.employer.id,:interview_date => "TBD", :interview_location => "TBD", :status => "Active"}) %> </td>
+      <td> <%= link_to "Create Interview", new_interview_path(:interview =>{:student_id => @interview.student_id, :employer_id => @interview.employer.id, :status => "Active"}) %> </td>
       <td> <%#= link_to "Create Interview", action: :create, method: :post, :id => Interview.all.size, controller: :interviews %> </td>
       <%# raise interview: %>
     </tr>
