@@ -1,6 +1,6 @@
 task :insert_employer_info => :environment do
 
-  infile = File.new("data/companies_hash.json", "r")
+  infile = File.new("data/companies.json", "r")
   temp = infile.read
   infile.close
 
