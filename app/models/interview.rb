@@ -11,7 +11,11 @@ class Interview < ActiveRecord::Base
   validates :status, :presence => true
   validates_uniqueness_of :student_id, :scope => [:employer_id], message: "Interview already exists"
 
-  def self.find_interview_status(student_id, employer_id)
+  def self.find_by_sid_eid(student_id, employer_id)
+      @interview = Interview.find(:first, :conditions => {:student_id => student_id, :employer_id => employer_id})  
+  end
+  
+  def self.find_status_by_sid_eid(student_id, employer_id)
       @interview = Interview.find(:first, :conditions => {:student_id => student_id, :employer_id => employer_id})
       if @interview
         @interview.status

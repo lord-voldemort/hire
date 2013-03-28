@@ -15,8 +15,7 @@ class Preference < ActiveRecord::Base
       
       Preference.where(:student_id => s.id, :employer_id => e.id).each do |n|        
         if n.interest_expressed_by != p.interest_expressed_by
-          interview_status = Interview.find_interview_status(s.id, e.id)
-          new_pair = [s.name, e.name, s.id, e.id, interview_status]
+          new_pair = [s.name, e.name, s.id, e.id, Interview.find_status_by_sid_eid(s.id, e.id), Interview.find_by_sid_eid(s.id, e.id)]
             unless matches.include? new_pair
               matches << new_pair
             end

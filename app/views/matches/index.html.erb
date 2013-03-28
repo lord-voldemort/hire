@@ -3,7 +3,7 @@
   <th>Student</th>
   <th>Employer</th>
   <th>Interview Status</th>
-  <th>Create Interview</th>
+  <th>Create / Update Interview</th>
 
   <% @matches.each do |m| %>  
     <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
@@ -18,7 +18,13 @@
         <%= m[4] %>
       </td>
 
-      <td> <%= link_to "Create Interview", new_interview_path(:interview =>{:student_id => @interview.student_id, :employer_id => @interview.employer.id, :status => "Active"}) %> </td>
+      <% if m[4] == "Not yet scheduled" %>
+        <td> <%= link_to "Create Interview", new_interview_path(:interview =>{:student_id => @interview.student_id, :employer_id => @interview.employer.id, :status => "Active"}) %> </td>
+        <% else %>
+        <td> 
+          <%= link_to "Update Interview", edit_interview_path(m[5].id) %>
+        </td>
+      <% end %>
     </tr>
   <% end %>
 </table>
