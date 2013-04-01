@@ -119,6 +119,15 @@
                 <i class="icon-cogs"></i>Employers
                 <%end%>
             </li>
+
+ <script type='text/javascript'>
+  $(".nav.nav-tabs a").parent("li").click(function(element){
+    // $(".nav.nav-tabs a").parent("li").removeClass("active");
+    debugger
+    $(this).addClass("active");  
+  })
+
+</script>
             <li><%=link_to preferences_path do%>
                 <i class="icon-comment"></i>Preferences
                 <%end%>
@@ -206,9 +215,7 @@
             </div>
         </div>
     </div>
-
-
-  </body>
+</body>
 </html>
 
 
