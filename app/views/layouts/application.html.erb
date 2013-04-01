@@ -39,7 +39,7 @@
         <div class="navbar-inner">
                 <ul class="nav pull-right">
 
-                    <li class="hidden-phone"><a href="#" role="button">Settings</a></li>
+<!--                    <li class="hidden-phone"><a href="#" role="button">Settings</a></li> -->
                     <li id="fat-menu" class="dropdown">
                         <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="icon-user"></i> Jack Smith
@@ -56,7 +56,7 @@
                     </li>
 
                 </ul>
-                <a class="brand" href="index.html">Awesome.</a>
+                <a class="brand" href="index.html">Flatiron School Recruiting</a>
         </div>
     </div>
 
@@ -65,7 +65,7 @@
         <div id="phone-navigation">
             <select class="selectnav" id="phone-menu">
 
-                <option value="index.html" selected="selected"> Dashboard</option>
+                <option><%=link_to "students", students_path %>Students</option>
 
                 <option value="reports.html" > Reports</option>
 
@@ -83,7 +83,7 @@
 
                 <option value="">----------------------</option>
 
-                <option value="index.html" selected="selected"> Dashboard</option>
+                <option value="index.html" selected="selected"> Students</option>
 
                 <option value="reports.html" > Reports</option>
 
@@ -109,12 +109,29 @@
 
             </select>
         </div>
-
-        <ul class="nav nav-tabs">
-            <li class="active"><a href="index.html"><i class="icon-dashboard"></i> <span>Dashboard</span></a></li>
-            <li ><a href="reports.html" ><i class="icon-bar-chart"></i> <span>Reports</span></a></li>
-            <li ><a href="components.html" ><i class="icon-cogs"></i> <span>Components</span></a></li>
-            <li ><a href="pricing.html"><i class="icon-magic"></i> <span>Pricing</span></a></li>
+        
+        <ul class="nav nav-tabs"> <!--Top nav bar -->
+            <li class="active"><%=link_to students_path do%>
+                <i class="icon-user"></i>Students
+                <%end%>
+            </li>
+            <li><%=link_to employers_path do%>
+                <i class="icon-cogs"></i>Employers
+                <%end%>
+            </li>
+            <li><%=link_to preferences_path do%>
+                <i class="icon-comment"></i>Preferences
+                <%end%>
+            </li>
+            <li><%=link_to matches_path do%>
+                <i class="icon-heart"></i>Matches
+                <%end%>
+            </li>            
+            <li><%=link_to interviews_path do%>
+                <i class="icon-comments"></i>Interviews
+                <%end%>
+            </li>
+            <!--
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i> Settings <b class="caret"></b></a>
                 <ul class="dropdown-menu">
@@ -123,6 +140,7 @@
                     <li><a href="/reset-password.html"><span>Forgot Password Page</span></a></li>
                 </ul>
             </li>
+            -->
         </ul>
     </div>
 
@@ -131,45 +149,44 @@
 
         <ul id="dashboard-menu" class="nav nav-list">
 
-            <li class="active "><a href="index.html"><i class="icon-home"></i> <span>Dashboard</span></a></li>
+            <li class="active"><%=link_to students_path do%>
+                <i class="icon-user"></i>Students
+                <%end%>
+            </li>
 
+            <li class=" "><%=link_to employers_path do%>
+                <i class="icon-cogs"></i>Employers
+                <%end%>
+            </li>
 
-            <li class=" "><a href="reports.html"><i class="icon-bar-chart"></i> <span>Reports</span></a></li>
+            <li class=" "><%=link_to preferences_path do%>
+                <i class="icon-comment"></i>Preferences
+                <%end%>
+            </li>
 
+            <li class=" "><%=link_to matches_path do%>
+                <i class="icon-heart"></i>Matches
+                <%end%>
+            </li> 
 
-            <li class=" "><a href="components.html"><i class="icon-briefcase"></i> <span>UI Features</span></a></li>
-
-
-            <li class=" "><a href="pricing.html"><i class="icon-magic"></i> <span>Pricing</span></a></li>
-
-
-            <li class=" "><a href="media.html"><i class="icon-film"></i> <span>Media</span></a></li>
-
-
-            <li class=" "><a href="blog.html"><i class="icon-beaker"></i> <span>Blog</span></a></li>
-
+            <li class=" "><%=link_to interviews_path do%>
+                <i class="icon-comments"></i>Interviews
+                <%end%>
+            </li>
 
             <li class=" "><a href="help.html"><i class="icon-question-sign"></i> <span>Help</span></a></li>
 
 
             <li class=" "><a href="faq.html"><i class="icon-book"></i> <span>Faq</span></a></li>
-
+ 
 
             <li class=" "><a href="calendar.html"><i class="icon-calendar"></i> <span>Calendar</span></a></li>
-
-
+<!--
             <li class=" "><a href="forms.html"><i class="icon-tasks"></i> <span>Forms</span></a></li>
 
 
             <li class=" "><a href="tables.html"><i class="icon-table"></i> <span>Tables</span></a></li>
-
-
-
-            <li class=" theme-mobile-hack"><a href="mobile.html"><i class="icon-comment-alt"></i> <span>Mobile</span></a></li>
-
-            <li class=" "><a href="icons.html"><i class="icon-heart"></i> <span>Font Awesome</span></a></li>
-
-
+-->
         </ul>
     </div>
 
