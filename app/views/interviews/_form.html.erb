@@ -1,54 +1,84 @@
-<%= form_for @interview do |i| %>
-  
-  <% @interview.errors.messages.each do |msg| %>
-  <P class="error_message"><%= msg[1][0] %></P>
+<div class="container-fluid">
+  <div class="span8 main-content">
+  <%= form_for @interview do |i| %>
+    
+    <% @interview.errors.messages.each do |msg| %>
+    <P class="error_message"><%= msg[1][0] %></P>
+        <% end %>
+     <div> <%= i.label :student_id %>
+      <%= i.select(:student_id, Student.all.collect {|s| [s.name, s.id]}, {:prompt => 'Select Student'}) %>
+    </div>
+    
+    <div>
+      <%= i.label :employer_id %>
+      <%= i.select(:employer_id, Employer.all.collect {|e| [e.name, e.id]}, {:prompt => 'Select Employer'}) %>
+    </div>
+    <div>
+      <%= i.label :status %>
+      <%= i.select(:status, ["Active", "Closed - Offer Accepted", "Closed - Offer Rejected", "Closed - Offer Not Received", "Dormant"]) %>
+    </div>
+    <div>
+
+      <%= i.fields_for :interview_appts do |ia| %>
+        <div class="interview_appointment">
+          <%= ia.label "DateTime" %>
+          <div class="date_time_select">
+            <%= ia.datetime_select :date_time %> 
+          </div>
+       
+          <%= ia.label :purpose %>
+          <%= ia.select(:purpose, ["Cultural", "Technical", "Programming", "Other"]) %>
+
+          <%= ia.label :location %>
+          <%= ia.text_field :location %>
+
+          <%= ia.label :interviewer %>
+          <%= ia.text_field :interviewer %>
+
+          <%= ia.label :comments %>
+          <%= ia.text_field :comments %>
+
+          <%= ia.label :follow_up %>
+          <%= ia.text_field :follow_up %>
+        </div>    
+
+
+
+
       <% end %>
-   <div> <%= i.label :student_id %>
-    <%= i.select(:student_id, Student.all.collect {|s| [s.name, s.id]}, {:prompt => 'Select Student'}) %>
-  </div>
-  
-  <div>
-    <%= i.label :employer_id %>
-    <%= i.select(:employer_id, Employer.all.collect {|e| [e.name, e.id]}, {:prompt => 'Select Employer'}) %>
-  </div>
-  <div>
-    <%= i.label :status %>
-    <%= i.select(:status, ["Active", "Closed - Offer Accepted", "Closed - Offer Rejected", "Closed - Offer Not Received", "Dormant"]) %>
-  </div>
-  <div>
+    </div>
 
-    <%= i.fields_for :interview_appts do |ia| %>
-      <div class="interview_appointment">
-        <%= ia.label "DateTime" %>
-        <div class="date_time_select">
-          <%= ia.datetime_select :date_time %> 
+    <div>
+      <%= i.submit %>
+    </div>
+
+  <% end %>
+  </div>
+  <div class="span4 sidebar">
+    <div class="widget">
+            <h2>Upcoming Interviews</h2>
+            <ul class="cards">
+              <%#= @upcoming_interviews = Interview.where(:student_id => current_user.id), :select => "interivew_appts") %>
+              <%#= @upcoming_interviews.interview_appts %>
+                <li>
+                    <p class="title">current_user.name</p>
+                    <div class="img">
+                        <img src="images/faces/1b.png">
+                        <div class="label label-info">Pro</div>
+                    </div>
+                    <p class="info-text">Interview with<%#=  Employer.where(:employer_id => Interview.where(:student_id => 5)) %></p>
+                    <div class="stats">
+                        <p class="time">5 minutes ago</p>
+                        <span>15 <i class="icon-pushpin"></i></span>
+                        <span>27 <i class="icon-comment"></i></span>
+                        <span>158 <i class="icon-eye-open"></i></span>
+                    </div>
+                </li>
+                
+                <li class="more">
+                    <a href="#">Show All</a>
+                </li>
+            </ul>
         </div>
-     
-        <%= ia.label :purpose %>
-        <%= ia.select(:purpose, ["Cultural", "Technical", "Programming", "Other"]) %>
-
-        <%= ia.label :location %>
-        <%= ia.text_field :location %>
-
-        <%= ia.label :interviewer %>
-        <%= ia.text_field :interviewer %>
-
-        <%= ia.label :comments %>
-        <%= ia.text_field :comments %>
-
-        <%= ia.label :follow_up %>
-        <%= ia.text_field :follow_up %>
-      </div>    
-
-
-
-
-    <% end %>
+    </div>
   </div>
-
-  <div>
-    <%= i.submit %>
-  </div>
-
-<% end %>
-
