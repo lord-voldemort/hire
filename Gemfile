@@ -24,6 +24,7 @@ gem 'jquery-rails'
 
 gem 'pry', :group => :development
 gem 'looksee', :group => :development
+gem 'awesome_print', :group => :development
 
 gem 'debugger'
 
