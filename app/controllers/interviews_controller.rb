@@ -1,9 +1,7 @@
 class InterviewsController < ApplicationController
   def new
     @interview = Interview.new(params[:interview])
-    3.times do
-      @interview.interview_appts.build
-  end
+    @interview.interview_appts.build
   end
 
   def create

@@ -1,0 +1,24 @@
+<fieldset class="interview_appt">
+  <%= ia.label "DateTime" %>
+  <%= ia.datetime_select :date_time %> 
+
+  <%= ia.label :purpose %>
+  <%= ia.select(:purpose, ["Cultural", "Technical", "Programming", "Other"]) %>
+
+  <%= ia.label :location %>
+  <%= ia.text_field :location%>
+
+  <%= ia.label :interviewer %>
+  <%= ia.text_field :interviewer %>
+
+  <%= ia.label :comments %>
+  <%= ia.text_field :comments %>
+
+  <%= ia.label :follow_up %>
+  <%= ia.text_field :follow_up %><br />
+
+  <%= ia.hidden_field :_destroy %>
+  <%= link_to "Remove Appt", '#', class: "remove_appts" %><br>
+
+  <%= link_to "Add Appt", "#", class: "add_appts" %>
+</fieldset>

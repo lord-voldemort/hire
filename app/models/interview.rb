@@ -3,7 +3,7 @@ class Interview < ActiveRecord::Base
   belongs_to :student
   belongs_to :employer
   has_many  :interview_appts
-  accepts_nested_attributes_for :interview_appts
+  accepts_nested_attributes_for :interview_appts, allow_destroy: true
 
   
   validates :student_id, :presence => true
