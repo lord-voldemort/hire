@@ -283,6 +283,13 @@ footer a {
   color: #b4b4bf;
 }
 /*Navigation*/
+#sidebar-right-nav {
+  position: absolute;
+  width: 436px;
+  float: right;
+  margin: 0em;
+  padding-top: 1.5em;
+}
 #sidebar-nav {
   position: absolute;
   width: 200px;
