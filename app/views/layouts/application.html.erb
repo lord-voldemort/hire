@@ -11,6 +11,7 @@
     <%= stylesheet_link_tag 'application' %>
     <%= javascript_include_tag 'application' %>
 
+
     <!--
     <script src="lib/jquery-1.7.2.min.js" type="text/javascript"></script>
     <script src="javascripts/site.js" type="text/javascript"></script>
@@ -111,7 +112,7 @@
         </div>
         
         <ul class="nav nav-tabs"> <!--Top nav bar -->
-            <li class="active"><%=link_to students_path do%>
+            <li class=""><%=link_to students_path do%>
                 <i class="icon-user"></i>Students
                 <%end%>
             </li>
@@ -120,13 +121,7 @@
                 <%end%>
             </li>
 
- <script type='text/javascript'>
-    $(".nav.nav-tabs a").parent("li").click(function(element){
-    $(".nav.nav-tabs a").parent("li").removeClass("active");
-    $(this).addClass("active");  
-  })
-
-</script>
+ 
             <li><%=link_to preferences_path do%>
                 <i class="icon-comment"></i>Preferences
                 <%end%>
@@ -157,7 +152,7 @@
 
         <ul id="dashboard-menu" class="nav nav-list">
 
-            <li class="active"><%=link_to students_path do%>
+            <li class=""><%=link_to students_path do%>
                 <i class="icon-user"></i>Students
                 <%end%>
             </li>
@@ -197,7 +192,10 @@
 -->
         </ul>
     </div>
-
+    <script type='text/javascript'>
+    $(".nav a[href='/<%=params[:controller]%>']").parent('li').removeClass('active');
+    $(".nav a[href='/<%=params[:controller]%>']").parent('li').addClass("active");
+    </script>
     <div class="content">
         <div class="container-fluid">
             <div class="row-fluid">
@@ -214,6 +212,7 @@
             </div>
         </div>
     </div>
+    
 </body>
 </html>
 
