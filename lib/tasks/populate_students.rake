@@ -30,11 +30,12 @@ task :populate_students => :environment do
 
  industries = ["gaming", "fashion", "media", "communcation", "education", "finance", "healthcare", "nonprofit"]
 
-   students.each do |student|
+   students.each_with_index do |student,index|
     s = Student.new
     s.name = student
     s.preferred_industry = industries.sample.capitalize
     s.preferred_location = "NYC"
+    s.user_id = index
     s.save
   end
 
