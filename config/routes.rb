@@ -9,6 +9,8 @@ InterviewApp::Application.routes.draw do
   resources :interviews
 
   get '/matches' => 'matches#index'
+  match 'auth/google_oauth2/callback', to: 'sessions#oauth'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

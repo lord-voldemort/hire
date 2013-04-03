@@ -13,4 +13,21 @@ class Student < ActiveRecord::Base
   validates :name, :presence => true
   validates :preferred_industry, :presence => true
   validates :preferred_location, :presence => true
+
+
+  def self.from_omniauth(gmail_user)
+    where(:name => gmail_user["info"]["name"]).first || create_from_omniauth(gmail_user)
+  end
+
+  def self.create_from_omniauth(gmail_user)
+    student = Student.new
+    student.name = gmail_user["info"]["name"]
+    student.email = gmail_user["info"]["email"]
+    student.preferred_location = "NYC"
+    student.preferred_industry = "Default"
+    student.save
+    student
+  end
+
+
 end
