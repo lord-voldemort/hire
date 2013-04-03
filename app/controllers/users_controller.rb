@@ -7,8 +7,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      flash[:notice] = "Account created!"
-      redirect_to root_path
+      session[:user_id] = @user.id
+      redirect_to root_path, notice: "Account created!"
+      
     else
       render "new"
     end
