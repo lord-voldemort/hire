@@ -17,6 +17,7 @@ task :populate_employers => :environment do
     e.category_code = company["category"] ? company["category"] : "no record found"
     e.description = company["description"] ? company["description"] : "no record found"
     e.funding = company["total_money_raised"] ? company["total_money_raised"] : "no record found"
+    e.homepage_url = company["homepage_url"].to_s ? company["homepage_url"] : "no record found"
     e.save
   end
 

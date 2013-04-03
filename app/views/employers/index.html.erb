@@ -4,8 +4,7 @@
 </button>
 <table id="employers_list">
   <th>Name</th>
-  <th>Industry</th>
-  <th>Location</th>
+  <th>Home Page</th>
   <th>Year Established</th>
   <th>Description</th>
   <th>Funding</th>
@@ -16,9 +15,7 @@
         <td>
         <%= link_to e.name, employer_path(e.id) %> <br>
         </td>
-        <td><%= e.industry %>
-        </td>
-        <td><%= e.location %>
+        <td><%= link_to e.homepage_url, e.homepage_url %>
         </td>
         <td><%= e.est_year %>
         </td>
