@@ -1,10 +1,13 @@
 jQuery(function() {
   $('form').on('click', '.remove_appts', function(event) {
     $(this).prev('input[type=hidden]').val('1');
-    $(this).closest('fieldset').hide();
+    console.log($(this).closest('.interview_appt'))
+    $(this).closest('.interview_appt').hide();
     return event.preventDefault();
   });
 });
+
+  //$(this).closest('fieldset').hide();
 
 jQuery(function() {
   $('.add_appts').click(function(event) {  
@@ -17,8 +20,7 @@ jQuery(function() {
     update_1 = new_fieldset.replace(regexp, new_id);
     var regexp2 = new RegExp('\\[0]', 'g');
     var new_name = '[' + size + ']';
-    update_2 = update_1.replace(regexp2, new_name);
-    console.log(update_2)
+    update_2 = "<div class='interview_appt'>" + update_1.replace(regexp2, new_name) + "</div>";
     $('.interview_appt:last').after(update_2);
     event.preventDefault();
     return false;

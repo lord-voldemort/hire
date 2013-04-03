@@ -2,14 +2,12 @@
   <div class="span8 main-content">
 
 <%= form_for @interview do |i| %>
-  
-<%#= i.text_field(:status) %>
-<%#= i.text_field(:status, :type => "hidden") %>
 
   <% @interview.errors.messages.each do |msg| %>
   <P class="error_message"><%= msg[1][0] %></P>
       <% end %>
-   <div> <%= i.label :student_id %>
+  
+  <div> <%= i.label :student_id %>
     <%= i.select(:student_id, Student.all.collect {|s| [s.name, s.id]}, {:prompt => 'Select Student'}) %>
   </div>
   
@@ -17,25 +15,21 @@
     <%= i.label :employer_id %>
     <%= i.select(:employer_id, Employer.all.collect {|e| [e.name, e.id]}, {:prompt => 'Select Employer'}) %>
   </div>
+  
   <div>
     <%= i.label :status %>
     <%= i.select(:status, ["Active", "Closed - Offer Accepted", "Closed - Offer Rejected", "Closed - Offer Not Received", "Dormant"]) %>
   </div>
-  <div>
 
-    <%#= i.fields_for :interview_appts, InterviewAppt.new do |ia| %>
-      <%#= render 'ia_fields_hidden', ia: ia %>
-    <%# end %>
-      
+  <div>  
     <%= i.fields_for :interview_appts do |ia| %>
       <%= render 'ia_fields', ia: ia %>
     <% end %>
-
   </div>
 
   <div>
-      <%= link_to "Add Appt", "#", class: "add_appts" %>
- <%= i.submit %>
+     <%= link_to "Add Appt", "#", class: "add_appts" %>
+    <%= i.submit %>
   </div>
 
 
