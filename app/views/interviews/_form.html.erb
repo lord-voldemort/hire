@@ -58,25 +58,24 @@
     <div class="widget">
             <h2>Upcoming Interviews</h2>
             <ul class="cards">
-              <%#= @upcoming_interviews = Interview.where(:student_id => current_user.id), :select => "interivew_appts") %>
-              <%#= @upcoming_interviews.interview_appts %>
+              <% @upcoming_interviews = Interview.includes(:interview_appts).where(:status => "Active", :student_id => (Student.where(:user_id => current_user.id).first.id)) %>
+              <% @upcoming_interviews.collect! {|itv| itv.interview_appts.collect! {|x|x}} %>
+              <% @upcoming_interviews.flatten! %>
+             <% @upcoming_interviews.sort!{|x,y|x.date_time <=> y.date_time}%>
+              <% @upcoming_interviews.each do |itv| %>
+
                 <li>
-                    <p class="title">current_user.name</p>
+                    <p class="title"><%= itv.date_time.strftime("%m/%d/%Y @ %I:%M%p") %></p>
                     <div class="img">
                         <img src="images/faces/1b.png">
                         <div class="label label-info">Pro</div>
                     </div>
-                    <p class="info-text">Interview with<%#=  Employer.where(:employer_id => Interview.where(:student_id => 5)) %></p>
-                    <div class="stats">
-                        <p class="time">5 minutes ago</p>
-                        <span>15 <i class="icon-pushpin"></i></span>
-                        <span>27 <i class="icon-comment"></i></span>
-                        <span>158 <i class="icon-eye-open"></i></span>
-                    </div>
+                    <p class="info-text">Interview with <%= itv.interviewer%></p>
+                    <p class="info-text">Interview Type: <%= itv.purpose%></p>
                 </li>
-                
+                <% end %>
                 <li class="more">
-                    <a href="#">Show All</a>
+                    <%= link_to "View All", interviews_path %>
                 </li>
             </ul>
         </div>
