@@ -1,4 +1,4 @@
-task :insert_student_info => :environment do
+task :populate_students => :environment do
 
   students = ["Ana Becker",
  "Laura Brown",

@@ -1,4 +1,4 @@
-task :insert_employer_info => :environment do
+task :populate_employers => :environment do
 
   infile = File.new("data/companies.json", "r")
   temp = infile.read

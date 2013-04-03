@@ -8,8 +8,11 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_path, notice: "Account created!"
-      
+      if @user.role == "Student"
+      redirect_to new_student_path(@user), notice: "Account created!"
+      else
+      redirect_to new_employer_path(@user), notice: "Account created!"
+      end
     else
       render "new"
     end
