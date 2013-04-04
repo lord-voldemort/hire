@@ -72,13 +72,20 @@
 
                         <ul class="dropdown-menu">
 
-                            <li><%= link_to 'Sign In', new_session_path, :tableindex => "-1" %></li>
-                            <li class="divider"></li>
-                            <li><a tabindex="-1" class="visible-phone" href="#">Settings</a></li>
-                            <li><%= link_to 'Sign In with Google', '/auth/google_oauth2', :tableindex => "-1" %></li>
-                            <li class="divider"></li>
+                            
+                            
                             <li><a tabindex="-1" class="visible-phone" href="#">Settings</a></li>
                             <li><%= link_to "<i class='icon-user'></i> Create Account".html_safe, new_user_path, :tableindex => "-1" %></li>
+                            
+                            <li class="divider"></li>
+                            
+                            <li><%= link_to 'Sign In', new_session_path, :tableindex => "-1" %></li>
+                            
+                            <li class="divider"></li>
+
+                            <li><a tabindex="-1" class="visible-phone" href="#">Settings</a></li>
+                            <li><%= link_to 'Create/Sign In via Google', '/auth/google_oauth2', :tableindex => "-1" %></li>
+                            
                         </ul>
 
                         <% end %>
