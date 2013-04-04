@@ -5,11 +5,12 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by_email(params[:email])
+    student = Student.find_by_email(params[:email])
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       flash[:notice] = "Logged in!"
-      redirect_to students_path
+      redirect_to student_path(student.id)
     else
       flash.now.alert = "Email or password is invalid"
       render "new"

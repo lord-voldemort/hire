@@ -6,6 +6,7 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new(params[:student])
     @student.user_id = current_user.id
+    @student.email = current_user.email
     if @student.save
     redirect_to student_path(@student.id)
     else

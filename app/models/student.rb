@@ -21,13 +21,16 @@ class Student < ActiveRecord::Base
   end
 
   def self.create_from_omniauth(gmail_user)
+    user = User.create(:email => gmail_user["info"]["email"], :role => "Student")
+    
+binding.pry
     student = Student.new
     student.name = gmail_user["info"]["name"]
     student.email = gmail_user["info"]["email"]
     student.preferred_location = "NYC"
     student.preferred_industry = "Default"
+    student.user_id = user.id
     student.save
-    student
   end
 
 
