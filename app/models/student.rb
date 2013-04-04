@@ -1,5 +1,5 @@
 class Student < ActiveRecord::Base
-  attr_accessible :name, :preferred_industry, :preferred_location, :employers_attributes, :user_id
+  attr_accessible :name, :preferred_industry, :preferred_location, :employers_attributes, :user_id, :email
   
   has_many :interviews
   has_many :employers, :through => :interviews
@@ -13,6 +13,7 @@ class Student < ActiveRecord::Base
   validates :name, :presence => true
   validates :preferred_industry, :presence => true
   validates :preferred_location, :presence => true
+  validates :email, :presence => true
 
 
   def self.from_omniauth(gmail_user)
