@@ -1,52 +1,51 @@
 <div class="container-fluid">
-  <div class="span8 main-content">
+    <div class="span8 main-content">
 
-<%= form_for @interview do |i| %>
+        <%= form_for @interview do |i| %>
 
-  <% @interview.errors.messages.each do |msg| %>
-  <P class="error_message"><%= msg[1][0] %></P>
-      <% end %>
-  
-  <div> <%= i.label :student_id %>
-    <%= i.select(:student_id, Student.all.collect {|s| [s.name, s.id]}, {:prompt => 'Select Student'}) %>
-  </div>
-  
-  <div>
-    <%= i.label :employer_id %>
-    <%= i.select(:employer_id, Employer.all.collect {|e| [e.name, e.id]}, {:prompt => 'Select Employer'}) %>
-  </div>
-  
-  <div>
-    <%= i.label :status %>
-    <%= i.select(:status, ["Active", "Closed - Offer Accepted", "Closed - Offer Rejected", "Closed - Offer Not Received", "Dormant"]) %>
-  </div>
+          <% @interview.errors.messages.each do |msg| %>
+          <P class="error_message"><%= msg[1][0] %></P>
+              <% end %>
+          
+          <div> <%= i.label :student_id %>
+            <%= i.select(:student_id, Student.all.collect {|s| [s.name, s.id]}, {:prompt => 'Select Student'}) %>
+          </div>
+          
+          <div>
+            <%= i.label :employer_id %>
+            <%= i.select(:employer_id, Employer.all.collect {|e| [e.name, e.id]}, {:prompt => 'Select Employer'}) %>
+          </div>
+          
+          <div>
+            <%= i.label :status %>
+            <%= i.select(:status, ["Active", "Closed - Offer Accepted", "Closed - Offer Rejected", "Closed - Offer Not Received", "Dormant"]) %>
+          </div>
 
-  <div>  
-    <%= i.fields_for :interview_appts do |ia| %>
-      <%= render 'ia_fields', ia: ia %>
-    <% end %>
-  </div>
+          <div>  
+            <%= i.fields_for :interview_appts do |ia| %>
+              <%= render 'ia_fields', ia: ia %>
+            <% end %>
+          </div>
 
-  <div>
-     <%= link_to "Add Appt", "#", class: "add_appts" %>
-    <%= i.submit %>
-  </div>
+          <div>
+             <%= link_to "Add Appt", "#", class: "add_appts" %>
+            <%= i.submit %>
+          </div>
 
 
-    <div>
-      <%= i.submit %>
+            <div>
+              <%= i.submit %>
+            </div>
+
+          <% end %>
     </div>
-
-  <% end %>
-  </div>
   <div class="span4 sidebar">
+    <% if @upcoming_interviews %>
     <div class="widget">
+            
             <h2>Upcoming Interviews</h2>
             <ul class="cards">
-              <% @upcoming_interviews = Interview.includes(:interview_appts).where(:status => "Active", :student_id => (Student.where(:user_id => current_user.id).first.id)) %>
-              <% @upcoming_interviews.collect! {|itv| itv.interview_appts.collect! {|x|x}} %>
-              <% @upcoming_interviews.flatten! %>
-             <% @upcoming_interviews.sort!{|x,y|x.date_time <=> y.date_time}%>
+              
               <% @upcoming_interviews.each do |itv| %>
 
                 <li>
@@ -59,10 +58,13 @@
                     <p class="info-text">Interview Type: <%= itv.purpose%></p>
                 </li>
                 <% end %>
+                
                 <li class="more">
                     <%= link_to "View All", interviews_path %>
                 </li>
             </ul>
         </div>
+      <% else %>
+      <% end %>
     </div>
   </div>
