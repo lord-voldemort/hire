@@ -7,26 +7,15 @@
 
   <div id = "preferences_student_view">
     <h3>Companies Interested In Student: </h3>
-    <% @student_companies.each do |comp| %>
-    <%= comp %> 
-    <% end %>
-<!--       <% Preference.where(:student_id => @student.id).each do |n| %>
-        <% if Preference.find(n.id).interest_expressed_by == "Employer"%>
-          <li> <%= Employer.find(n.employer_id).name %> </li>
-          <% else %>
-        <% end %>
-      <% end %> -->
+      <% @student_companies.each do |comp| %>
+      <%= link_to comp.name, employer_path(comp.id) %> 
+      <% end %>
+
           
     <h3>Student's Companies of Interest: </h3>
-    <% @student_interest.each do |comp| %>
-    <%= comp %> 
-    <% end %>
-       <!--  <% Preference.where(:student_id => @student.id).each do |n| %>
-        <% if Preference.find(n.id).interest_expressed_by == "Student"%>
-          <li> <%= Employer.find(n.employer_id).name %> </li>
-          <% else %>
-        <% end %>
-      <% end %> -->
+      <% @student_interest.each do |comp| %>
+      <%= link_to comp.name, employer_path(comp.id) %> 
+      <% end %>
   </div>
 
 </ul>

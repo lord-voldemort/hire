@@ -16,7 +16,7 @@ class Employer < ActiveRecord::Base
     x =[]
     Preference.where(:student_id => student_id).each do |n|
       if Preference.find(n.id).interest_expressed_by == "Employer"
-      x << Employer.find(n.employer_id).name
+      x << Employer.find(n.employer_id)
       else
       end
     end
@@ -27,7 +27,7 @@ class Employer < ActiveRecord::Base
     x =[]
     Preference.where(:student_id => student_id).each do |n|
       if Preference.find(n.id).interest_expressed_by == "Student"
-       x << Employer.find(n.employer_id).name
+       x << Employer.find(n.employer_id)
       else
       end
     end
