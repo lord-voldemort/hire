@@ -17,6 +17,16 @@ class Student < ActiveRecord::Base
 
 
   
+  def self.find_matches(comp_int, stud_int)
+   matches =[]
+   comp_int.each do |match|
+      if stud_int.include? match
+        matches << match
+      else
+      end
+    end
+    matches
+  end
 
 
   def self.from_omniauth(gmail_user)
