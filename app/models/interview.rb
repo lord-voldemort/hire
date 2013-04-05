@@ -24,4 +24,12 @@ class Interview < ActiveRecord::Base
       end
   end
   
+
+  def self.upcoming_interviews(student)
+    upcoming_interviews = Interview.includes(:interview_appts).where(:status => "Active", :student_id => student.id)
+    upcoming_interviews.collect! {|itv| itv.interview_appts.collect! {|x|x}} 
+    upcoming_interviews.flatten! 
+    upcoming_interviews.sort!{|x,y|x.date_time <=> y.date_time}
+  end
+  
 end

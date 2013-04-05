@@ -23,6 +23,7 @@ class StudentsController < ApplicationController
     @student_companies =Employer.companies_interested_in_student(@student.id)
     @student_interest = Employer.companies_student_has_interest(@student.id)
     @matches = Student.find_matches(@student_companies, @student_interest)
+    @upcoming_interviews = Interview.upcoming_interviews(@student)
 
   end
 
