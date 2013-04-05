@@ -4,7 +4,12 @@
     <h1>Student Profile</h1>
 
     <ul>
-      <h3>Name: <%= @student.name %> </h3>
+      <h3>Name: <%= @student.name %> 
+        <button type="button" class="btn btn-primary"> 
+          <%= link_to '+', new_preference_path(@student) %>
+        </button>
+      </h3>
+      
       <h3>Preferred Industry: <%= @student.preferred_industry %> </h3>
       <h3>Preferred Location: <%= @student.preferred_location %> </h3>
 
