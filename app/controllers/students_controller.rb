@@ -22,6 +22,13 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
     @student_companies =Employer.companies_interested_in_student(@student.id)
     @student_interest = Employer.companies_student_has_interest(@student.id)
+    @matches = []
+    @student_companies.each do |match|
+      if @student_interest.include? match
+        @matches << match
+      else
+      end
+    end
   end
 
   def edit

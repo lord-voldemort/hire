@@ -6,18 +6,23 @@
   <h3>Preferred Location: <%= @student.preferred_location %> </h3>
 
   <div id = "preferences_student_view">
-    <h3>Companies Interested In Student: </h3>
+    <h3>Companies Interested In <%= @student.name%>: </h3>
       <% @student_companies.each do |comp| %>
-      <%= link_to comp.name, employer_path(comp.id) %> 
+      <li><%= link_to comp.name, employer_path(comp.id) %></li>
       <% end %>
 
           
-    <h3>Student's Companies of Interest: </h3>
+    <h3><%= @student.name%>'s Companies of Interest: </h3>
       <% @student_interest.each do |comp| %>
-      <%= link_to comp.name, employer_path(comp.id) %> 
+      <li><%= link_to comp.name, employer_path(comp.id) %></li>
       <% end %>
   </div>
-
+<div id = "matches_student_view">
+  <h3> <%= @student.name%>'s Matches: </h3>
+  <% @matches.each do |match| %>
+  <li><%= link_to match.name, employer_path(match.id) %></li>
+  <%end%>
+</div>
 </ul>
 
 <%= link_to 'Edit', edit_student_path(@student) %> |
