@@ -7,20 +7,26 @@
 
   <div id = "preferences_student_view">
     <h3>Companies Interested In Student: </h3>
-      <% Preference.where(:student_id => @student.id).each do |n| %>
+    <% @student_companies.each do |comp| %>
+    <%= comp %> 
+    <% end %>
+<!--       <% Preference.where(:student_id => @student.id).each do |n| %>
         <% if Preference.find(n.id).interest_expressed_by == "Employer"%>
           <li> <%= Employer.find(n.employer_id).name %> </li>
           <% else %>
         <% end %>
-      <% end %>
+      <% end %> -->
           
     <h3>Student's Companies of Interest: </h3>
-        <% Preference.where(:student_id => @student.id).each do |n| %>
+    <% @student_interest.each do |comp| %>
+    <%= comp %> 
+    <% end %>
+       <!--  <% Preference.where(:student_id => @student.id).each do |n| %>
         <% if Preference.find(n.id).interest_expressed_by == "Student"%>
           <li> <%= Employer.find(n.employer_id).name %> </li>
           <% else %>
         <% end %>
-      <% end %>
+      <% end %> -->
   </div>
 
 </ul>

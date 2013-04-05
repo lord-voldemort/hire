@@ -11,4 +11,26 @@ class Employer < ActiveRecord::Base
 
   validates :name, :presence => true
   
+
+  def self.companies_interested_in_student(student_id)
+    x =[]
+    Preference.where(:student_id => student_id).each do |n|
+      if Preference.find(n.id).interest_expressed_by == "Employer"
+      x << Employer.find(n.employer_id).name
+      else
+      end
+    end
+    x
+  end
+
+  def self.companies_student_has_interest(student_id)
+    x =[]
+    Preference.where(:student_id => student_id).each do |n|
+      if Preference.find(n.id).interest_expressed_by == "Student"
+       x << Employer.find(n.employer_id).name
+      else
+      end
+    end
+    x
+  end
 end

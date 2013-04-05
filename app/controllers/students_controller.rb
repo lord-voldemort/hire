@@ -20,6 +20,8 @@ class StudentsController < ApplicationController
 
   def show
     @student = Student.find(params[:id])
+    @student_companies =Employer.companies_interested_in_student(@student.id)
+    @student_interest = Employer.companies_student_has_interest(@student.id)
   end
 
   def edit

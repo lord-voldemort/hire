@@ -5,8 +5,11 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by_email(params[:email])
-    student = Student.find_by_email(params[:email])
-
+    if user.role == "Student"
+      student = Student.find_by_email(params[:email])
+    else
+    end
+    
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       flash[:notice] = "Logged in!"
