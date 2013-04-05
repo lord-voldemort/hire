@@ -2,6 +2,11 @@ class InterviewsController < ApplicationController
   def new
     @interview = Interview.new(params[:interview])
     @interview.interview_appts.build
+    if current_user.id
+      @student = Student.find(current_user.id)
+    @upcoming_interviews = Interview.upcoming_interviews(@student)
+    else
+    end
   end
 
   def create

@@ -16,20 +16,31 @@ class Student < ActiveRecord::Base
   validates :email, :presence => true
 
 
+  
+  def self.find_matches(comp_int, stud_int)
+   matches =[]
+   comp_int.each do |match|
+      if stud_int.include? match
+        matches << match
+      else
+      end
+    end
+    matches
+  end
+
+
   def self.from_omniauth(gmail_user)
     where(:name => gmail_user["info"]["name"]).first || create_from_omniauth(gmail_user)
   end
 
   def self.create_from_omniauth(gmail_user)
     user = User.create(:email => gmail_user["info"]["email"], :role => "Student")
-    
-binding.pry
     student = Student.new
     student.name = gmail_user["info"]["name"]
     student.email = gmail_user["info"]["email"]
     student.preferred_location = "NYC"
     student.preferred_industry = "Default"
-    student.user_id = user.id
+    student.user_id = User.all.size
     student.save
   end
 

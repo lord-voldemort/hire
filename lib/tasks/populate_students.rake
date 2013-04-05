@@ -36,6 +36,11 @@ task :populate_students => :environment do
     s.preferred_industry = industries.sample.capitalize
     s.preferred_location = "NYC"
     s.user_id = index
+
+    names = student.split
+    email = names.first.downcase + "." + names.last.downcase + "@flatironschool.com"
+    s.email = email
+
     s.save
   end
 

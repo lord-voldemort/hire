@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130404184436) do
+ActiveRecord::Schema.define(:version => 20130405183502) do
 
   create_table "employers", :force => true do |t|
     t.string   "name"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20130404184436) do
     t.text     "description"
     t.text     "funding"
     t.string   "homepage_url"
+    t.integer  "user_id"
   end
 
   create_table "interview_appts", :force => true do |t|

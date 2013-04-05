@@ -2,6 +2,19 @@ class PreferencesController < ApplicationController
 
   def new
     @preference = Preference.new
+    if current_user.role == "Student"
+      @preference.student_id = Student.where(:user_id => current_user.id).first.id 
+      @preference.interest_expressed_by = "Student"
+    elsif current_user.role == "Employer"
+      @preference.employer_id = Employer.where(:user_id => current_user.id).first.id
+      @preference.interest_expressed_by = "Employer"
+      @preference.student_id = params[:format]
+      binding.pry
+    else
+  
+    end
+
+    #if @student
   end
 
   def create
