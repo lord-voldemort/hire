@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
         end
 
     elsif user.role = "Employer"
-      employer = Employer.find_bysomemethod we make(params[:email])
+      employer = Employer.find_by_email(params[:email])
         if user && user.authenticate(params[:password])
         session[:user_id] = user.id
         flash[:notice] = "Logged in!"
@@ -26,7 +26,6 @@ class SessionsController < ApplicationController
         flash.now.alert = "Email or password is invalid"
         render "new"
         end
-    end
     else
     end
   end
