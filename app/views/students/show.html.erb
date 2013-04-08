@@ -18,29 +18,42 @@
 
       <div id = "preferences_student_view">
         <h3>Companies Interested In <%= @student.name%>: </h3>
+          <% if @student_companies.any? %>
           <% @student_companies.each do |comp| %>
           <li><%= link_to comp.name, employer_path(comp.id) %></li>
           <% end %>
+          <% else %>
+          <li>None</li>
+          <%end%>
 
               
         <h3><%= @student.name%>'s Companies of Interest: </h3>
+          <% if @student_interest.any? %>
           <% @student_interest.each do |comp| %>
           <li><%= link_to comp.name, employer_path(comp.id) %></li>
           <% end %>
+          <% else %>
+          <li>None</li>
+          <%end%>
       </div>
       <div id = "matches_student_view">
         <h3> <%= @student.name%>'s Matches: </h3>
-        <% @matches.each do |match| %>
-        <h2>  
-          <% if current_user.role == "Student" %>
-          <button type="button" class="btn btn-primary"> 
-            <%= link_to '+ Interview', new_interview_path(@student) %>
-          </button>
-          <%= link_to match.name, employer_path(match.id) %>
-        </h2>
-        <% else %>
-        <% end %>
-        <%end%>
+        
+        <% if @matches.any? %>
+          <% @matches.each do |match| %>
+          <h2>  
+            <% if current_user.role == "Student" %>
+            <button type="button" class="btn btn-primary"> 
+              <%= link_to '+ Interview', new_interview_path(@student) %>
+            </button>
+            <%= link_to match.name, employer_path(match.id) %>
+          </h2>
+          <% else %>
+          <% end %>
+          <%end%>
+          <% else %>
+          <li>None</li>
+          <%end%>
       </div>
     </ul>
   </div>
