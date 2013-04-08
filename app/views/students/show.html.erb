@@ -5,9 +5,12 @@
 
     <ul>
       <h3>Name: <%= @student.name %> 
+        <% if current_user.role == "Employer" %>
         <button type="button" class="btn btn-primary"> 
-          <%= link_to '+', new_preference_path(@student) %>
+          <%= link_to '+ Interest', new_preference_path(@student) %>
         </button>
+        <% else %>
+        <% end %>
       </h3>
       
       <h3>Preferred Industry: <%= @student.preferred_industry %> </h3>
@@ -28,7 +31,15 @@
       <div id = "matches_student_view">
         <h3> <%= @student.name%>'s Matches: </h3>
         <% @matches.each do |match| %>
-        <li><%= link_to match.name, employer_path(match.id) %></li>
+        <h2>  
+          <% if current_user.role == "Student" %>
+          <button type="button" class="btn btn-primary"> 
+            <%= link_to '+ Interview', new_interview_path(@student) %>
+          </button>
+          <%= link_to match.name, employer_path(match.id) %>
+        </h2>
+        <% else %>
+        <% end %>
         <%end%>
       </div>
     </ul>

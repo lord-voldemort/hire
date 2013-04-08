@@ -20,6 +20,7 @@ class PreferencesController < ApplicationController
   def create
 
     @preference = Preference.new(params[:preference])
+    #raise @preference.inspect
     if @preference.save
     redirect_to preference_path(@preference.id)
     else
