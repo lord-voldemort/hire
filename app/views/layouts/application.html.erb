@@ -150,10 +150,17 @@
         <% if current_user %>
             <% if current_user.role == "Student" %>
             <ul class="nav nav-tabs"> <!--Top nav bar -->
-                <li class=""><%=link_to student_path(current_user.id) do%>
+                <% if Student.where(:email => current_user.email).any? %>
+                <li class=""><%=link_to student_path(Student.get_student_id(current_user)) do%>
                     <i class="icon-user"></i>Home
                     <%end%>
                 </li>
+                <% else %>
+                 <li class=""><%= link_to new_student_path do%>
+                    <i class="icon-user"></i>Home
+                    <%end%>
+                </li>
+                <% end %>
                 <li><%=link_to employers_path do%>
                     <i class="icon-cogs"></i>Employers
                     <%end%>
@@ -176,10 +183,18 @@
 
             <% else %>
             <ul class="nav nav-tabs"> <!--Top nav bar -->
-                <li><%=link_to employer_path(current_user.id) do%>
+                <% if Employer.where(:email => current_user.email).any? %>
+                <li><%=link_to employer_path(Employer.get_employer_id(current_user)) do%>
                     <i class="icon-cogs"></i>Home
                     <%end%>
                 </li>
+                <% else %>
+                 <li class=""><%= link_to new_employer_path do%>
+                    <i class="icon-user"></i>Home
+                    <%end%>
+                </li>
+                <% end %>
+
                 <li class=""><%=link_to students_path do%>
                     <i class="icon-user"></i>Students
                     <%end%>

@@ -71,8 +71,10 @@
                         <img src="images/faces/1b.png">
                         <div class="label label-info">Pro</div>
                     </div>
-                    <p class="info-text">Interview with <%= itv.interviewer%></p>
-                    <p class="info-text">Interview Type: <%= itv.purpose%></p>
+                  
+                    <p class="info-text">Interview With: <%= @student.email == current_user.email ? itv.interviewer : "Hidden"%></p>
+                    <p class="info-text">Interview Type: <%= @student.email == current_user.email ? itv.itv.purpose : "Hidden"%></p>
+                  
                 </li>
                 <% end %>
                 <li class="more">

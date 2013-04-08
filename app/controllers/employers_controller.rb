@@ -9,13 +9,9 @@ class EmployersController < ApplicationController
     @employer.user_id = current_user.id
     @employer.email = current_user.email
     if @employer.save
-      if current_user.role == "Employer"
-        redirect_to students_path
-      else
-        redirect_to employers_path(@employer.id)
-      end
+      redirect_to students_path
     else
-    render 'new'
+      render 'new'
     end 
   end
 

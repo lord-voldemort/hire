@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
   def new
-    @student = Student.new(:id => current_user.id)
+    @student = Student.new(:user_id => current_user.id)
   end
 
   def create

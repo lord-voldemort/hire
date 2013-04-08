@@ -9,7 +9,7 @@ class PreferencesController < ApplicationController
       @preference.employer_id = Employer.where(:user_id => current_user.id).first.id
       @preference.interest_expressed_by = "Employer"
       @preference.student_id = params[:format]
-      binding.pry
+     
     else
   
     end
