@@ -18,6 +18,7 @@ task :populate_employers => :environment do
     e.description = company["description"] ? company["description"] : "no record found"
     e.funding = company["total_money_raised"] ? company["total_money_raised"] : "no record found"
     e.homepage_url = company["homepage_url"].to_s ? company["homepage_url"] : "no record found"
+    e.email = company["name"] ? company["name"].to_s + "@" + company["name"].to_s + ".com" : "default@default.com"
     e.save
   end
 
