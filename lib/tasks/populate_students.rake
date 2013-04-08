@@ -35,7 +35,7 @@ task :populate_students => :environment do
     s.name = student
     s.preferred_industry = industries.sample.capitalize
     s.preferred_location = "NYC"
-    s.user_id = index
+    s.user_id = index + 1
 
     names = student.split
     email = names.first.downcase + "." + names.last.downcase + "@flatironschool.com"
