@@ -8,23 +8,23 @@ class SessionsController < ApplicationController
     if user.role == "Student"
       student = Student.find_by_email(params[:email])
         if user && user.authenticate(params[:password])
-        session[:user_id] = user.id
-        flash[:notice] = "Logged in!"
-        redirect_to student_path(student.id)
+          session[:user_id] = user.id
+          flash[:notice] = "Logged in!"
+          redirect_to student_path(student.id)
         else
-        flash.now.alert = "Email or password is invalid"
-        render "new"
+          flash.now.alert = "Email or password is invalid"
+          render "new"
         end
 
-    elsif user.role = "Employer"
+    elsif user.role == "Employer"
       employer = Employer.find_by_email(params[:email])
         if user && user.authenticate(params[:password])
-        session[:user_id] = user.id
-        flash[:notice] = "Logged in!"
-        redirect_to employer_path(employer.id)
+          session[:user_id] = user.id
+          flash[:notice] = "Logged in!"
+          redirect_to employer_path(employer.id)
         else
-        flash.now.alert = "Email or password is invalid"
-        render "new"
+          flash.now.alert = "Email or password is invalid"
+          render "new"
         end
     else
     end

@@ -1,5 +1,5 @@
 class Employer < ActiveRecord::Base
-  attr_accessible :name, :industry, :location, :est_year, :students_attributes, :homepage_url, :funding, :number_of_employees, :description, :user_id
+  attr_accessible :name, :industry, :location, :est_year, :students_attributes, :homepage_url, :funding, :number_of_employees, :description, :user_id, :email
   
   has_many :interviews
   has_many :students, :through => :interviews
@@ -10,7 +10,8 @@ class Employer < ActiveRecord::Base
   accepts_nested_attributes_for :students
 
   validates :name, :presence => true
-  
+  validates :email, :presence => true
+
 
   def self.companies_interested_in_student(student_id)
     x =[]
