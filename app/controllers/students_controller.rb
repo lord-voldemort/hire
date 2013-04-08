@@ -28,16 +28,29 @@ class StudentsController < ApplicationController
   end
 
   def edit
-    @student = Student.find(params[:id])
+      if session[:user_id] == params[:id].to_i
+      @student = Student.find(params[:id])
+    else
+      flash[:notice] = "Not Authorized!"
+      redirect_to students_path
+    end
+    
   end
   
   def update
-    @student = Student.find(params[:id])
+    if session[:user_id] == params[:id].to_i
+      @student = Student.find(params[:id])
     if @student.update_attributes(params[:student])
       redirect_to action: :show, id: @student.id
     else
       render 'edit'
     end
+    else
+      flash[:notice] = "Not Authorized!"
+      redirect_to students_path
+    end
+
+    
   end
   
   def destroy
