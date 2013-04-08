@@ -1,12 +1,22 @@
 class InterviewsController < ApplicationController
   def new
-    @interview = Interview.new(params[:interview])
-    @interview.interview_appts.build
-    if current_user.id
-      @student = Student.where(:user_id => current_user.id)
-      @upcoming_interviews = Interview.upcoming_interviews(@student)
+    if current_user.role == "Student"
+      @student = Student.where(:user_id => current_user.id).first
+      @upcoming_interviews = Interview.upcoming_interviews(@student,current_user.role)
+      @interview = Interview.new(params[:interview])
+      @interview.student_id = @student.id
+      @interview.interview_appts.build
     else
+      @employer = Employer.where(:user_id => current_user.id).first
+      @upcoming_interviews = Interview.upcoming_interviews(@employer,current_user.role)
+      @interview = Interview.new(params[:interview])
+      @interview.employer_id = @employer.id
+      @interview.interview_appts.build
     end
+    
+    
+    #@student = Student.where(:user_id => current_user.id).first
+    #@employer = Employer.where(:user_id => current_user.id).first
   end
 
   def create

@@ -7,15 +7,25 @@
           <P class="error_message"><%= msg[1][0] %></P>
               <% end %>
           
-          <div> <%= i.label :student_id %>
-            <%= i.select(:student_id, Student.all.collect {|s| [s.name, s.id]}, {:prompt => 'Select Student'}) %>
-          </div>
+
+          <% if current_user.role == "Student" %>
+            <%= i.hidden_field :student_id, :value => @student.id %>
+          <% else %>
+            <div> <%= i.label :student_id %>
+            
+              <%= i.select(:student_id, Student.all.collect {|s| [s.name, s.id]}, {:prompt => 'Select Student'}) %>
+            </div>
+          <% end %>
           
-          <div>
-            <%= i.label :employer_id %>
-            <%= i.select(:employer_id, Employer.all.collect {|e| [e.name, e.id]}, {:prompt => 'Select Employer'}) %>
-          </div>
-          
+          <% if current_user.role == "Employer" %>
+            <%= i.hidden_field :employer_id, :value => @employer.id %>
+          <% else %>
+            <div>
+              <%= i.label :employer_id %>
+              <%= i.select(:employer_id, Employer.all.collect {|e| [e.name, e.id]}, {:prompt => 'Select Employer'}) %>
+            </div>
+          <% end %>
+
           <div>
             <%= i.label :status %>
             <%= i.select(:status, ["Active", "Closed - Offer Accepted", "Closed - Offer Rejected", "Closed - Offer Not Received", "Dormant"]) %>

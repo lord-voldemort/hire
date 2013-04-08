@@ -4,30 +4,34 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by_email(params[:email])
-    binding.pry
-    if user.role == "Student"
-      student = Student.find_by_email(params[:email])
-        if user && user.authenticate(params[:password])
-          session[:user_id] = user.id
-          flash[:notice] = "Logged in!"
-          redirect_to student_path(student.id)
-        else
-          flash.now.alert = "Email or password is invalid"
-          render "new"
-        end
+    
+    if user = User.find_by_email(params[:email])
 
-    elsif user.role == "Employer"
-      employer = Employer.find_by_email(params[:email])
-        if user && user.authenticate(params[:password])
-          session[:user_id] = user.id
-          flash[:notice] = "Logged in!"
-          redirect_to employer_path(employer.id)
-        else
-          flash.now.alert = "Email or password is invalid"
-          render "new"
-        end
+      if user.role == "Student"
+        student = Student.find_by_email(params[:email])
+          if user && user.authenticate(params[:password])
+            session[:user_id] = user.id
+            flash[:notice] = "Logged in!"
+            redirect_to student_path(student.id)
+          else
+            flash.now.alert = "Email or password is invalid"
+            render "new"
+          end
+
+      elsif user.role == "Employer"
+        employer = Employer.find_by_email(params[:email])
+          if user && user.authenticate(params[:password])
+            session[:user_id] = user.id
+            flash[:notice] = "Logged in!"
+            redirect_to employer_path(employer.id)
+          else
+            flash.now.alert = "Email or password is invalid"
+            render "new"
+          end
+      else
+      end
     else
+    redirect_to new_session_url
     end
   end
 
