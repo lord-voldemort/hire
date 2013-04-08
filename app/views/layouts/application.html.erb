@@ -147,7 +147,62 @@
 
             </select>
         </div>
+        <% if current_user %>
+            <% if current_user.role == "Student" %>
+            <ul class="nav nav-tabs"> <!--Top nav bar -->
+                <li class=""><%=link_to student_path(current_user.id) do%>
+                    <i class="icon-user"></i>Home
+                    <%end%>
+                </li>
+                <li><%=link_to employers_path do%>
+                    <i class="icon-cogs"></i>Employers
+                    <%end%>
+                </li>
+
+     
+                <li><%=link_to preferences_path do%>
+                    <i class="icon-comment"></i>Preferences
+                    <%end%>
+                </li>
+                <li><%=link_to matches_path do%>
+                    <i class="icon-heart"></i>Matches
+                    <%end%>
+                </li>            
+                <li><%=link_to interviews_path do%>
+                    <i class="icon-comments"></i>Interviews
+                    <%end%>
+                </li>
+            </ul>
+
+            <% else %>
+            <ul class="nav nav-tabs"> <!--Top nav bar -->
+                <li><%=link_to employer_path(current_user.id) do%>
+                    <i class="icon-cogs"></i>Home
+                    <%end%>
+                </li>
+                <li class=""><%=link_to students_path do%>
+                    <i class="icon-user"></i>Students
+                    <%end%>
+                </li>
+                
+
+     
+                <li><%=link_to preferences_path do%>
+                    <i class="icon-comment"></i>Preferences
+                    <%end%>
+                </li>
+                <li><%=link_to matches_path do%>
+                    <i class="icon-heart"></i>Matches
+                    <%end%>
+                </li>            
+                <li><%=link_to interviews_path do%>
+                    <i class="icon-comments"></i>Interviews
+                    <%end%>
+                </li>
+            </ul>
+            <% end %>
         
+        <% else %>
         <ul class="nav nav-tabs"> <!--Top nav bar -->
             <li class=""><%=link_to students_path do%>
                 <i class="icon-user"></i>Students
@@ -171,17 +226,9 @@
                 <i class="icon-comments"></i>Interviews
                 <%end%>
             </li>
-            <!--
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i> Settings <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="/sign-in.html"><span>Sign-in Page</span></a></li>
-                    <li><a href="/sign-up.html"><span>Sign-up Page</span></a></li>
-                    <li><a href="/reset-password.html"><span>Forgot Password Page</span></a></li>
-                </ul>
-            </li>
-            -->
         </ul>
+        <%end%>
+        
     </div>
 
 
