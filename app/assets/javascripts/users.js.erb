@@ -6,13 +6,17 @@ jQuery(function() {
         $('body').append(data);
         $('#employer-selection-modal').modal('toggle');
         $('#choose-employer').change(function(event) {
-            var clone_field = $('.field').clone().html();
-            var regexp = new RegExp('user_email', 'g');
-            update_1 = clone_field.replace(regexp, 'employer_identity');
-            update_2 = update_1.replace('user[email]', 'employer[employer_identity]');
-            update_3 = "<div class='field'>" + update_2.replace('Email', 'Employer Identity') + "</div>";
-            $('.user-type').after(update_3);
-            $("#employer_identity").val($('#choose-employer :selected').text());
+            if ($('#employer_identity').length > 0) {
+              $("#employer_identity").val($('#choose-employer :selected').text());
+            } else {
+              var clone_field = $('.field').clone().html();
+              var regexp = new RegExp('user_email', 'g');
+              update_1 = clone_field.replace(regexp, 'employer_identity');
+              update_2 = update_1.replace('user[email]', 'employer[employer_identity]');
+              update_3 = "<div class='field'>" + update_2.replace('Email', 'Employer Identity') + "</div>";
+              $('.user-type').after(update_3);
+              $("#employer_identity").val($('#choose-employer :selected').text());
+            }              
         })
         $('#select-employer-button').click(function(event){
           $('#employer-selection-modal').modal('toggle');
@@ -22,5 +26,3 @@ jQuery(function() {
     }
   });
 })
-
-//need to fix: multiple Employer Identity boxes w each select
