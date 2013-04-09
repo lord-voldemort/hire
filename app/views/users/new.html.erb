@@ -5,23 +5,11 @@
     <%= f.label :email %>
     <%= f.text_field :email %>
   </div>
-  <div>
+  <div class = 'user-type'>
     <%= f.label :role %>
-    <%#= f.option_groups_from_collection_for_select(@users, :employers, :name, :id, :name, 3) %>
-    <%#= f.options_from_collection_for_select(@employers, :id, :name) %>
-
-    <select name = "user[role]">
-      <option value = "Student">Student</option>
-      <optgroup label = "Employers">
-        <option value = "Employer">New Employer</option>
-        <% Employer.all.sort.each do |e| %>
-          <option value = "Employer" ><%= e.name %></option>
-        <% end %>
-      </optgroup>
-    </select>
-
-<%#= f.select(:role, ["Student", "Employer"], {:prompt => "Please Select"}) %>
+    <%= f.select(:role, ["Student", "Employer"], {:prompt => "Please Select"}) %>
   </div>
+
   <div>
     <%= f.label :password %>
     <%= f.password_field :password %>
@@ -30,7 +18,7 @@
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation %>
   </div>
-  <div>
+  <div id = 'create-user-button'>
     <%= f.submit %>
   </div>
 <% end %>

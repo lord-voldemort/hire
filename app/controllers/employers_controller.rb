@@ -46,4 +46,8 @@ class EmployersController < ApplicationController
     redirect_to employers_path
   end
 
+  def employer_selection_modal
+    render :employer_selection_modal, :layout => false
+  end
+
 end

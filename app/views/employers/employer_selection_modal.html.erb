@@ -1,0 +1,15 @@
+<div class = "modal", id = 'employer-selection-modal'>
+
+  <div class = "modal-body">
+    <p>Please choose your employer's name, or add "New Employer"</p>
+    <select id = "choose-employer">
+      <option>Please Select</option>
+      <option value = "New Employer">New Employer</option>
+      <% Employer.all.sort.each do |e| %>
+        <option value = <%= e.name %> ><%= e.name %></option>
+      <% end %>
+    </select>
+    <br>
+    <button type = "button", class = "btn", id = 'select-employer-button'>Submit</button>
+  </div>
+</div>
