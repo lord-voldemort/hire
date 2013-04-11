@@ -13,6 +13,7 @@ class Employer < ActiveRecord::Base
   validates :email, :presence => true
 
 def self.get_employer_id(current_user)
+  #The line below will return the wrong Employer b/c User ID & Employer ID are on different scales
   Employer.where(:user_id => current_user.id).first.id
 end
 

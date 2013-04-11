@@ -184,7 +184,8 @@
             <% else %>
             <ul class="nav nav-tabs"> <!--Top nav bar -->
                 <% if Employer.where(:email => current_user.email).any? %>
-                <li><%=link_to employer_path(Employer.get_employer_id(current_user)) do%>
+                <!--identifying Employer by email-->
+                <li><%=link_to employer_path(Employer.where(:email => current_user.email).first.id) do%>
                     <i class="icon-cogs"></i>Home
                     <%end%>
                 </li>
