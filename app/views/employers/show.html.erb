@@ -2,7 +2,7 @@
 
 <ul>
   <h3>Name: <%= @employer.name %> </h3>
-  <h3>Home Page: <%= @employer.homepage_url %> </h3>
+  <h3>Home Page: <%= link_to @employer.homepage_url, @employer.homepage_url %> </h3>
   <h3>Description: <%= @employer.description %> </h3>
   <h3>Established: <%= @employer.est_year %> </h3>
   <h3>Funding: <%= @employer.funding%> </h3>
