@@ -6,8 +6,8 @@ class PreferencesController < ApplicationController
     if current_user.role == "Student"
       @preference.student_id = Student.where(:user_id => current_user.id).first.id 
       @preference.interest_expressed_by = "Student"
+      @preference.employer_id = params[:format]
     elsif current_user.role == "Employer"
-      #binding.pry
       #would need to adjust next line if Employers have more than 1 
       @preference.employer_id = Employer.where(:email => current_user.email).first.id
       @preference.interest_expressed_by = "Employer"

@@ -13,8 +13,7 @@ class InterviewsController < ApplicationController
       @interview.employer_id = @employer.id
       @interview.interview_appts.build
     end
-    
-    
+        
     #@student = Student.where(:user_id => current_user.id).first
     #@employer = Employer.where(:user_id => current_user.id).first
   end
