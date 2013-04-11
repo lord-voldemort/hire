@@ -73,7 +73,7 @@
                     </div>
                   
                     <p class="info-text">Interview With: <%= @student.email == current_user.email ? itv.interviewer : "Hidden"%></p>
-                    <p class="info-text">Interview Type: <%= @student.email == current_user.email ? itv.itv.purpose : "Hidden"%></p>
+                    <p class="info-text">Interview Type: <%= @student.email == current_user.email ? itv.purpose : "Hidden"%></p>  <!-- used to be itv.itv.purpose....was that intentional?--> 
                   
                 </li>
                 <% end %>
