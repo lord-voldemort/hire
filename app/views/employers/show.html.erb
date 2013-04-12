@@ -16,18 +16,18 @@
   <h3>Employees: <%= @employer.number_of_employees %> </h3>
 
   <div id = "preferences_employer_view">
-    <h3>Students Interested In Company: </h3>
+    <h3>Students Interested In <%= @employer.name%>: </h3>
       <% Preference.where(:employer_id => @employer.id).each do |n| %>
         <% if Preference.find(n.id).interest_expressed_by == "Student"%>
-          <li> <%= Student.find(n.student_id).name %> </li>
+          <li> <%= link_to Student.find(n.student_id).name, student_path(n.student_id) %> </li>
           <% else %>
         <% end %>
       <% end %>
           
-    <h3>Company's Students of Interest: </h3>
+    <h3><%= @employer.name%>'s Students of Interest: </h3>
         <% Preference.where(:employer_id => @employer.id).each do |n| %>
         <% if Preference.find(n.id).interest_expressed_by == "Employer"%>
-          <li> <%= Student.find(n.student_id).name %> </li>
+          <li> <%= link_to Student.find(n.student_id).name, student_path(n.student_id) %> </li>
           <% else %>
         <% end %>
       <% end %>
