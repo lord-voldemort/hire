@@ -7,7 +7,7 @@ class InterviewsController < ApplicationController
       @interview.student_id = @student.id
       @interview.interview_appts.build
     else
-      @employer = Employer.where(:user_id => current_user.id).first
+      @employer = Employer.where(:email => current_user.email).first
       @upcoming_interviews = Interview.upcoming_interviews(@employer,current_user.role)
       @interview = Interview.new(params[:interview])
       @interview.employer_id = @employer.id
@@ -37,6 +37,9 @@ class InterviewsController < ApplicationController
 
   def edit
     @interview = Interview.find(params[:id])
+    @student = Student.find(@interview[:student_id])
+    @employer = Employer.find(@interview[:employer_id])
+
   end
   
   def update
