@@ -1,63 +1,88 @@
-<h1>Employer Profile</h1>
+<div class="container-fluid">
+  <div class="span8 main-content">
+    <h1>Employer Profile</h1>
 
-<ul>
-  <h3>Name: <%= @employer.name %> 
-    <% if current_user.role == "Student" %>
-      <button type="button" class="btn btn-primary"> 
-        <%= link_to '+ Interest', new_preference_path(@employer) %>
-      </button>
-    <% else %>
-    <% end %>
-  </h3>
-  <h3>Home Page: <%= link_to @employer.homepage_url, @employer.homepage_url %> </h3>
-  <h3>Description: <%= @employer.description %> </h3>
-  <h3>Established: <%= @employer.est_year %> </h3>
-  <h3>Funding: <%= @employer.funding%> </h3>
-  <h3>Employees: <%= @employer.number_of_employees %> </h3>
+    <ul>
+      <h3>Name: <%= @employer.name %> 
+        <% if current_user.role == "Student" %>
+          <button type="button" class="btn btn-primary"> 
+            <%= link_to '+ Interest', new_preference_path(@employer) %>
+          </button>
+        <% else %>
+        <% end %>
+      </h3>
+      <h3>Home Page: <%= link_to @employer.homepage_url, @employer.homepage_url %> </h3>
+      <h3>Description: <%= @employer.description %> </h3>
+      <h3>Established: <%= @employer.est_year %> </h3>
+      <h3>Funding: <%= @employer.funding%> </h3>
+      <h3>Employees: <%= @employer.number_of_employees %> </h3>
 
-  <div id = "preferences_employer_view">
-    <h3>Students Interested In <%= @employer.name%>: </h3>
-      <% Preference.where(:employer_id => @employer.id).each do |n| %>
-        <% if Preference.find(n.id).interest_expressed_by == "Student"%>
-          <li> <%= link_to Student.find(n.student_id).name, student_path(n.student_id) %> </li>
+      <div id = "preferences_employer_view">
+        <h3>Students Interested In <%= @employer.name%>: </h3>
+          <% Preference.where(:employer_id => @employer.id).each do |n| %>
+            <% if Preference.find(n.id).interest_expressed_by == "Student"%>
+              <li> <%= link_to Student.find(n.student_id).name, student_path(n.student_id) %> </li>
+              <% else %>
+            <% end %>
+          <% end %>
+              
+        <h3><%= @employer.name%>'s Students of Interest: </h3>
+            <% Preference.where(:employer_id => @employer.id).each do |n| %>
+            <% if Preference.find(n.id).interest_expressed_by == "Employer"%>
+              <li> <%= link_to Student.find(n.student_id).name, student_path(n.student_id) %> </li>
+              <% else %>
+            <% end %>
+          <% end %>
+      </div>
+
+      <div id = "matches_employer_view">
+        <h3> <%= @employer.name%>'s Matches: </h3>
+        
+        <% if @matches.any? %>
+          <% @matches.each do |match| %>
+          <h2>  
+            <% if current_user.role == "Employer" %>
+            <button type="button" class="btn btn-primary"> 
+              <%= link_to '+ Interview', new_interview_path(@employer) %>
+            </button>
+            <%= link_to match.name, student_path(match.id) %>
+          </h2>
           <% else %>
-        <% end %>
-      <% end %>
-          
-    <h3><%= @employer.name%>'s Students of Interest: </h3>
-        <% Preference.where(:employer_id => @employer.id).each do |n| %>
-        <% if Preference.find(n.id).interest_expressed_by == "Employer"%>
-          <li> <%= link_to Student.find(n.student_id).name, student_path(n.student_id) %> </li>
+          <% end %>
+          <%end%>
           <% else %>
-        <% end %>
-      <% end %>
+          <li>None</li>
+          <%end%>
+      </div>
+    </ul>
   </div>
 
-  <div id = "matches_employer_view">
-    <h3> <%= @employer.name%>'s Matches: </h3>
-    
-    <% if @matches.any? %>
-      <% @matches.each do |match| %>
-      <h2>  
-        <% if current_user.role == "Employer" %>
-        <button type="button" class="btn btn-primary"> 
-          <%= link_to '+ Interview', new_interview_path(@employer) %>
-        </button>
-        <%= link_to match.name, student_path(match.id) %>
-      </h2>
-      <% else %>
-      <% end %>
-      <%end%>
-      <% else %>
-      <li>None</li>
-      <%end%>
+  <div class="span4 sidebar">
+    <div class="widget">
+      <h2>Upcoming Interviews</h2>
+      <ul class="cards">
+      
+        <% @upcoming_interviews.each do |itv| %>
+
+          <li>
+              <p class="title"><%= itv.date_time.strftime("%m/%d/%Y @ %I:%M%p") %></p>
+              <div class="img">
+                  <img src="images/faces/1b.png">
+                  <div class="label label-info">Pro</div>
+              </div>
+              
+              <p class="info-text">Interview With: <%= @employer.email == current_user.email ? itv.interviewer : "Hidden"%></p>           
+              <p class="info-text">Interview With: <%= @employer.email == current_user.email ? itv.interviewer : "Hidden"%></p>
+              <p class="info-text">Interview Type: <%= @employer.email == current_user.email ? itv.purpose : "Hidden"%></p>
+          </li>
+        <% end %>
+          <li class="more">
+              <%= link_to "View All", interviews_path %>
+          </li>
+      </ul>
+    </div>
   </div>
-
-
-
-</ul>
-
-
+</div>
 
 <%= link_to 'Edit', edit_employer_path(@employer) %> |
 <%= link_to 'Delete', @employer, method: :delete, data: { confirm: "Are you sure?" } %> |

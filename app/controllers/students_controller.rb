@@ -20,8 +20,10 @@ class StudentsController < ApplicationController
 
   def show
     @student = Student.find(params[:id])
-    @student_companies =Employer.companies_interested_in_student(@student.id)
-    @student_interest = Employer.companies_student_has_interest(@student.id)
+    #@student_companies =Employer.companies_interested_in_student(@student.id)
+    #@student_interest = Employer.companies_student_has_interest(@student.id)
+    @student_companies = Student.companies_interested_in_student(@student.id)
+    @student_interest = Student.companies_student_has_interest(@student.id)
     @matches = Student.find_matches(@student_companies, @student_interest)
     @upcoming_interviews = Interview.upcoming_interviews(@student, current_user.role)
 
