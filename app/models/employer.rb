@@ -17,25 +17,38 @@ class Employer < ActiveRecord::Base
     #Employer.where(:user_id => current_user.id).first.id
   end
 
-  def self.companies_interested_in_student(student_id)
+  def self.students_interested_in_employer(employer_id)
     x =[]
-    Preference.where(:student_id => student_id).each do |n|
-      if Preference.find(n.id).interest_expressed_by == "Employer"
-      x << Employer.find(n.employer_id)
+    Preference.where(:employer_id => employer_id).each do |n|
+      if Preference.find(n.id).interest_expressed_by == "Student"
+      x << Student.find(n.student_id)
       else
       end
     end
     x
   end
 
-  def self.companies_student_has_interest(student_id)
+  def self.students_employer_has_interest(employer_id)
     x =[]
-    Preference.where(:student_id => student_id).each do |n|
-      if Preference.find(n.id).interest_expressed_by == "Student"
-       x << Employer.find(n.employer_id)
+    Preference.where(:employer_id => employer_id).each do |n|
+      if Preference.find(n.id).interest_expressed_by == "Employer"
+       x << Student.find(n.student_id)
       else
       end
     end
     x
   end
+
+  def self.find_matches(student_interest, employer_interest)
+   matches =[]
+   student_interest.each do |match|
+      if employer_interest.include? match
+        matches << match
+      else
+      end
+    end
+    matches
+  end
+
 end
+

@@ -21,6 +21,10 @@ class EmployersController < ApplicationController
 
   def show
     @employer = Employer.find(params[:id])
+    @student_interest = Student.students_interested_in_employer(@employer.id)
+    @employer_interest = Student.students_employer_has_interest(@employer.id)
+    @matches = Employer.find_matches(@student_interest, @employer_interest)
+    @upcoming_interviews = Interview.upcoming_interviews(@employer, current_user.role)
   end
 
   def edit
