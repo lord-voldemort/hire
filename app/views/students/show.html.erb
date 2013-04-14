@@ -71,6 +71,7 @@
                         <div class="label label-info">Pro</div>
                     </div>
                   
+                    <p class="info-text">Employer: <%= @student.email == current_user.email ? Employer.find(Interview.find_by_id(itv.interview_id).employer_id).name : "Hidden"%></p>  
                     <p class="info-text">Interview With: <%= @student.email == current_user.email ? itv.interviewer : "Hidden"%></p>
                     <p class="info-text">Interview Type: <%= @student.email == current_user.email ? itv.purpose : "Hidden"%></p>  <!-- used to be itv.itv.purpose....was that intentional?--> 
                   

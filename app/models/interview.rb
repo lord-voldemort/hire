@@ -34,6 +34,7 @@ class Interview < ActiveRecord::Base
     upcoming_interviews.collect! {|itv| itv.interview_appts.collect! {|x|x}} 
     upcoming_interviews.flatten! 
     upcoming_interviews.sort!{|x,y|x.date_time <=> y.date_time}
+    #raise upcoming_interviews.inspect
   end
   
 end
