@@ -33,7 +33,7 @@ class InterviewsController < ApplicationController
 
   def index
     if current_user
-    @interviews = Interview.all
+    @interviews = Interview.find_all(current_user.role, current_user.id)
     else
     redirect_to new_user_path
     end

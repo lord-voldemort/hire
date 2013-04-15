@@ -23,7 +23,17 @@ class Interview < ActiveRecord::Base
         "Not yet scheduled"
       end
   end
-  
+
+  def self.find_all(user_role, user_id)
+    if user_role == "Student"  
+      collection = Interview.where(:student_id => user_id)
+      collection.collect! {|i| i}  
+    elsif user_role == "Employer"
+      collection = Interview.where(:employer_id => user_id)
+      collection.collect! {|i| i}
+    else
+    end
+  end
 
   def self.upcoming_interviews(person, role)
     if role == "Student"

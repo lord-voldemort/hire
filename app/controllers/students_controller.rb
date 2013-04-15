@@ -1,6 +1,10 @@
 class StudentsController < ApplicationController
   def new
+    if current_user
     @student = Student.new(:user_id => current_user.id)
+    else
+      redirect_to new_user_path
+    end
   end
 
   def create
@@ -30,7 +34,8 @@ class StudentsController < ApplicationController
   end
 
   def edit
-      if session[:user_id] == params[:id].to_i
+    binding.pry
+    if session[:user_id] == Student.find(params[:id]).id
       @student = Student.find(params[:id])
     else
       flash[:notice] = "Not Authorized!"
@@ -40,7 +45,7 @@ class StudentsController < ApplicationController
   end
   
   def update
-    if session[:user_id] == params[:id].to_i
+    if session[:user_id] == Student.find(params[:id]).id
       @student = Student.find(params[:id])
     if @student.update_attributes(params[:student])
       redirect_to action: :show, id: @student.id
@@ -56,9 +61,13 @@ class StudentsController < ApplicationController
   end
   
   def destroy
+    if session[:user_id] == Student.find(params[:id]).id
     @student = Student.find(params[:id])
     @student.destroy
     redirect_to root_path
+    else 
+      redirect_to new_user_path
+    end
   end
 
 

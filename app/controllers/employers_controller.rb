@@ -36,29 +36,36 @@ class EmployersController < ApplicationController
   end
 
   def edit
-    if current_user
+    
+    if session[:user_id] == Employer.find(params[:id]).id
     @employer = Employer.find(params[:id])
     else
-    redirect_to new_user_path
+      flash[:notice] = "Not Authorized!"
+      redirect_to employers_path
     end
   end
   
   def update
+    if session[:user_id] == Employer.find(params[:id]).id
     @employer = Employer.find(params[:id])
-    if @employer.update_attributes(params[:employer])
-      redirect_to action: :show, id: @employer.id
+      if @employer.update_attributes(params[:employer])
+        redirect_to action: :show, id: @employer.id
+      else
+        render 'edit'
+      end
     else
-      render 'edit'
+    redirect_to new_user_path
     end
   end
   
   def destroy
-    if current_user
+    if session[:user_id] == Employer.find(params[:id]).id
     @employer = Employer.find(params[:id])
     @employer.destroy
-    redirect_to employers_path
-    else
     redirect_to new_user_path
+    else
+      flash[:notice] = "Not Authorized!"
+      redirect_to employers_path
     end
   end
 
