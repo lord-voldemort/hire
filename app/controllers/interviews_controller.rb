@@ -33,7 +33,12 @@ class InterviewsController < ApplicationController
 
   def index
     if current_user
-    @interviews = Interview.where(:user_id => current_user.id).all
+      if current_user.role == "Student"
+        @interviews = Interview.where(:student_id => current_user.id).all
+      elsif current_user.role == "Employer"
+        @interviews = Interview.where(:employer_id => current_user.id).all
+      else
+      end
     else
     redirect_to new_user_path
     end
