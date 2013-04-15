@@ -33,7 +33,7 @@ class InterviewsController < ApplicationController
 
   def index
     if current_user
-    @interviews = Interview.find_all(current_user.role, current_user.id)
+    @interviews = Interview.where(:user_id => current_user.id).all
     else
     redirect_to new_user_path
     end

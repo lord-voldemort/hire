@@ -151,7 +151,7 @@
             <% if current_user.role == "Student" %>
             <ul class="nav nav-tabs"> <!--Top nav bar -->
                 <% if Student.where(:email => current_user.email).any? %>
-                <li class=""><%=link_to student_path(Student.get_student_id(current_user)) do%>
+                <li class=""><%=link_to student_path(Student.get_student_id(current_user.id)) do%>
                     <i class="icon-user"></i>Home
                     <%end%>
                 </li>

@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
           if user && user.authenticate(params[:password])
             session[:user_id] = user.id
             flash[:notice] = "Logged in!"
+            debugger
             redirect_to student_path(student.id)
           else
             flash.now.alert = "Email or password is invalid"

@@ -17,8 +17,8 @@ class Student < ActiveRecord::Base
   validates :email, :presence => true
 
 
-  def self.get_student_id(current_user)
-  Student.where(:user_id => current_user.id).first.id
+  def self.get_student_id(userid)
+    Student.where(:user_id => userid).first.id
   end
 
   def self.find_matches(comp_int, stud_int)
