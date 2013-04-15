@@ -6,6 +6,7 @@ class Employer < ActiveRecord::Base
 
   has_many :preferences
   has_many :students, :through => :preferences, :dependent => :destroy
+  has_many :students, :through => :interviews, :dependent => :destroy
 
   accepts_nested_attributes_for :students
 

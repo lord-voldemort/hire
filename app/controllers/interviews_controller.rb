@@ -70,7 +70,7 @@ class InterviewsController < ApplicationController
     if current_user
     @interview = Interview.find(params[:id])
     @interview.destroy
-    redirect_to root_path
+    redirect_to action: :index
     else
     redirect_to new_user_path
     end
