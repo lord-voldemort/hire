@@ -1,7 +1,11 @@
 <h1>Students List</h1>
+<% if current_user.role == "Student" %>
+<% elsif current_user.role == "Employer" %>
+<% else %>
 <button type="button" class="btn btn-primary"> 
   <%= link_to 'Add Student', new_student_path %>
 </button>
+<% end %>
 <table id="students_list">
   <th>Name</th>
   <th>Industry</th>
