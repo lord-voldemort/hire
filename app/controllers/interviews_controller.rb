@@ -1,17 +1,21 @@
 class InterviewsController < ApplicationController
   def new
-    if current_user.role == "Student"
-      @student = Student.where(:user_id => current_user.id).first
-      @upcoming_interviews = Interview.upcoming_interviews(@student,current_user.role)
-      @interview = Interview.new(params[:interview])
-      @interview.student_id = @student.id
-      @interview.interview_appts.build
+    if current_user
+      if current_user.role == "Student"
+        @student = Student.where(:user_id => current_user.id).first
+        @upcoming_interviews = Interview.upcoming_interviews(@student,current_user.role)
+        @interview = Interview.new(params[:interview])
+        @interview.student_id = @student.id
+        @interview.interview_appts.build
+      else
+        @employer = Employer.where(:email => current_user.email).first
+        @upcoming_interviews = Interview.upcoming_interviews(@employer,current_user.role)
+        @interview = Interview.new(params[:interview])
+        @interview.employer_id = @employer.id
+        @interview.interview_appts.build
+      end
     else
-      @employer = Employer.where(:email => current_user.email).first
-      @upcoming_interviews = Interview.upcoming_interviews(@employer,current_user.role)
-      @interview = Interview.new(params[:interview])
-      @interview.employer_id = @employer.id
-      @interview.interview_appts.build
+    redirect_to new_user_path
     end
         
     #@student = Student.where(:user_id => current_user.id).first
@@ -28,18 +32,29 @@ class InterviewsController < ApplicationController
   end
 
   def index
+    if current_user
     @interviews = Interview.all
+    else
+    redirect_to new_user_path
+    end
   end
 
   def show
+    if current_user
     @interview = Interview.find(params[:id])
+    else
+    redirect_to new_user_path
+    end
   end
 
   def edit
+    if current_user
     @interview = Interview.find(params[:id])
     @student = Student.find(@interview[:student_id])
     @employer = Employer.find(@interview[:employer_id])
-
+    else
+    redirect_to new_user_path
+    end
   end
   
   def update
@@ -52,9 +67,13 @@ class InterviewsController < ApplicationController
   end
   
   def destroy
+    if current_user
     @interview = Interview.find(params[:id])
     @interview.destroy
     redirect_to root_path
+    else
+    redirect_to new_user_path
+    end
   end
 
 
