@@ -54,7 +54,7 @@ class InterviewsController < ApplicationController
   def destroy
     @interview = Interview.find(params[:id])
     @interview.destroy
-    redirect_to root_path
+    redirect_to action: :index
   end
 
 
