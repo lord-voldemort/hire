@@ -3,6 +3,7 @@
     <h1>Employer Profile</h1>
 
     <ul>
+      <p><%= image_tag @employer.logo %></p>
       <h3>Name: <%= @employer.name %> 
         <% if current_user.role == "Student" %>
           <button type="button" class="btn btn-primary"> 
