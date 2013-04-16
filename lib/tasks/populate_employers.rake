@@ -16,7 +16,13 @@ task :populate_employers => :environment do
       employer.est_year = company[:founded] ? company[:founded] : "no founding date."
       employer.number_of_employees = company[:number_of_employees] ? company[:number_of_employees] : "no employment data"
       employer.funding = company[:funding] ? company[:funding] : "no funding info."
+      
+      #add overview for employers
+      if company[:overview]
+        employer.overview = String(company[:overview])
+      end
 
+      #create dummy email address for employers
       if company[:hompage]
         index = company[:homepage].index(".")
         email = company[:name].downcase + "@" + company[:homepage][index+1..-1]
