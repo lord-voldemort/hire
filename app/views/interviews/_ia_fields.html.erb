@@ -1,6 +1,7 @@
 <fieldset class="interview_appt">
-  <%= ia.label "DateTime" %>
-  <%= ia.datetime_select :date_time %> 
+  
+  <%= ia.label "Date & Time" %>
+  <%= ia.datetime_select :date_time, {:start_year => Time.now.year, :end_year => Time.now.year+2, ampm: true}, {:class => 'date_time_select'} %> 
 
   <%= ia.label :purpose %>
   <%= ia.select(:purpose, ["Cultural", "Technical", "Programming", "Other"]) %>
