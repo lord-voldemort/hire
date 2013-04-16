@@ -34,7 +34,6 @@ class StudentsController < ApplicationController
   end
 
   def edit
-    binding.pry
     if session[:user_id] == Student.find(params[:id]).id
       @student = Student.find(params[:id])
     else
