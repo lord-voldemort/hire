@@ -1,26 +1,45 @@
 task :populate_employers => :environment do
 
-  infile = File.new("data/companies.json", "r")
-  temp = infile.read
-  infile.close
+  print "Populating Employers"
 
-  companies = JSON.parse(temp)
+  yaml = File.read('data/hash_of_companies.yml')
+  companies = YAML.load(yaml)
+  
+  student_size = Student.all.size
 
   companies.each_with_index do |company,index|
-    e = Employer.new
-    e.name = company["name"] ? company["name"] : "no record found"
-    e.industry = company["category"] ? company["category"] : "no record found"
-    e.location = company["location"] ? company["location"] : "no record found"
-    e.est_year = company["founded"] ? company["founded"] : "no record found"
-    #e.overview = company["overview"] ? company["overview"] : "no record found"
-    e.number_of_employees = company["number_of_employees"].to_s ? company["number_of_employees"] : "no record found"
-    e.category_code = company["category"] ? company["category"] : "no record found"
-    e.description = company["description"] ? company["description"] : "no record found"
-    e.funding = company["total_money_raised"] ? company["total_money_raised"] : "no record found"
-    e.homepage_url = company["homepage_url"].to_s ? company["homepage_url"] : "no record found"
-    e.email = company["name"] ? company["name"].to_s.downcase + "@" + company["name"].to_s.downcase + ".com" : "default@default.com"
-    e.user_id = Student.all.size + index + 1
-    e.save
+    if company
+      employer = Employer.new
+      employer.user_id = student_size + index + 1
+      employer.name = company[:name]
+      employer.industry = company[:industry] ? company[:industry] : "no industry found."
+      employer.est_year = company[:founded] ? company[:founded] : "no founding date."
+      employer.number_of_employees = company[:number_of_employees] ? company[:number_of_employees] : "no employment data"
+      employer.funding = company[:funding] ? company[:funding] : "no funding info."
+
+      if company[:hompage]
+        index = company[:homepage].index(".")
+        email = company[:name].downcase + "@" + company[:homepage][index+1..-1]
+        email = email.gsub("/", "")
+        employer.email = email
+      else
+        employer.email = company[:name].downcase + "@" + company[:name] + ".com"
+      end
+
+      employer.homepage_url = company[:homepage] ? company[:homepage] : "no homepage found."
+      employer.description = String(company[:description]) ? company[:description] : "no description."
+      if company[:logo]
+        employer.logo = "http://www.crunchbase.com/" + company[:logo]["available_sizes"].first.last
+      else
+        "no image found"
+      end
+
+      print "."
+      employer.save
+    else
+      next
+    end
   end
 
+  print "done.\n"
 end

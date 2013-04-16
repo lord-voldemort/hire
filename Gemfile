@@ -29,6 +29,7 @@ gem 'awesome_print', :group => :development
 gem 'debugger'
 
 gem 'json'
+gem 'crunchbase'
 
 #gem 'therubyracer'
 gem 'twitter-bootstrap-rails'

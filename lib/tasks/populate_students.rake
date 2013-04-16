@@ -1,5 +1,7 @@
 task :populate_students => :environment do
 
+  print "Populating students"
+
   students = ["Ana Becker",
  "Laura Brown",
  "Andrew Callahan",
@@ -41,7 +43,11 @@ task :populate_students => :environment do
     email = names.first.downcase + "." + names.last.downcase + "@flatironschool.com"
     s.email = email
 
+    print "."
+
     s.save
   end
+
+  print "done.\n"
 
 end

@@ -1,0 +1,1 @@
+task :populate_all => [:environment, :populate_students, :populate_employers, :populate_user_students, :populate_user_employers]
