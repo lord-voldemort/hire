@@ -47,4 +47,9 @@ class SessionsController < ApplicationController
     redirect_to student_path(student.id), notice: "Signed in!"
   end
 
+  def help
+    #redirect_to help_path
+  end
+
+
 end

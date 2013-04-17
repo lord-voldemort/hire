@@ -36,7 +36,7 @@ class EmployersController < ApplicationController
   end
 
   def edit
-    
+    #binding.pry
     if session[:user_id] == Employer.find(params[:id]).id
     @employer = Employer.find(params[:id])
     else

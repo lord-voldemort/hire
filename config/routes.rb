@@ -13,7 +13,7 @@ InterviewApp::Application.routes.draw do
 
   get '/matches' => 'matches#index'
   match 'auth/google_oauth2/callback', to: 'sessions#oauth'
-  
+  get '/help' => 'sessions#help'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

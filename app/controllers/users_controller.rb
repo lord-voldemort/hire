@@ -28,4 +28,9 @@ class UsersController < ApplicationController
       render "new"
     end
   end
+
+  def help
+    redirect_to help_path
+  end
+
 end

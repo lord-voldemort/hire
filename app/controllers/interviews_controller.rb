@@ -17,9 +17,6 @@ class InterviewsController < ApplicationController
     else
     redirect_to new_user_path
     end
-        
-    #@student = Student.where(:user_id => current_user.id).first
-    #@employer = Employer.where(:user_id => current_user.id).first
   end
 
   def create

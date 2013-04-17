@@ -9,6 +9,7 @@
           
 
           <% if current_user.role == "Student" %>
+          <%# binding.pry %>
             <%= i.hidden_field :student_id, :value => @student.id %>
           <% else %>
             <div> <%= i.label :student_id %>
