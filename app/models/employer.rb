@@ -1,5 +1,5 @@
 class Employer < ActiveRecord::Base
-  attr_accessible :name, :industry, :location, :est_year, :students_attributes, :homepage_url, :funding, :number_of_employees, :description, :user_id, :email
+  attr_accessible :name, :industry, :location, :est_year, :students_attributes, :homepage_url, :funding, :number_of_employees, :description, :user_id, :email, :logo
   
   has_many :interviews
   has_many :students, :through => :interviews
