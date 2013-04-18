@@ -23,14 +23,10 @@ task :populate_employers => :environment do
       end
 
       #create dummy email address for employers
-      if company[:hompage]
-        index = company[:homepage].index(".")
-        email = company[:name].downcase + "@" + company[:homepage][index+1..-1]
-        email = email.gsub("/", "")
-        employer.email = email
-      else
-        employer.email = company[:name].downcase + "@" + company[:name] + ".com"
-      end
+      name = company[:name].downcase
+      name = name.gsub(".", "")
+      name = name.gsub(" ", "")
+      employer.email = name + "@" + name + ".com"
 
       employer.homepage_url = company[:homepage] ? company[:homepage] : "no homepage found."
       employer.description = String(company[:description]) ? company[:description] : "no description."
