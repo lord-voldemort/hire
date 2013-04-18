@@ -33,9 +33,10 @@ class InterviewsController < ApplicationController
       if current_user.role == "Student"
         @interviews = Interview.where(:student_id => current_user.id).all
       elsif current_user.role == "Employer"
-        @interviews = Interview.where(:employer_id => current_user.id).all
+        @interviews = Interview.where(:employer_id => Employer.where(:user_id=> current_user.id).first.id).all
       else
       end
+      binding.pry
     else
     redirect_to new_user_path
     end
