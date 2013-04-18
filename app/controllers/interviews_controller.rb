@@ -22,7 +22,7 @@ class InterviewsController < ApplicationController
   def create
     @interview = Interview.new(params[:interview])  
     if @interview.save
-    redirect_to interview_path(@interview.id)
+      redirect_to interview_path(@interview.id)
     else
     render 'new'
     end
@@ -34,9 +34,7 @@ class InterviewsController < ApplicationController
         @interviews = Interview.where(:student_id => current_user.id).all
       elsif current_user.role == "Employer"
         @interviews = Interview.where(:employer_id => Employer.where(:user_id=> current_user.id).first.id).all
-      else
       end
-      binding.pry
     else
     redirect_to new_user_path
     end
@@ -44,19 +42,19 @@ class InterviewsController < ApplicationController
 
   def show
     if current_user
-    @interview = Interview.find(params[:id])
+      @interview = Interview.find(params[:id])
     else
-    redirect_to new_user_path
+      redirect_to new_user_path
     end
   end
 
   def edit
     if current_user
-    @interview = Interview.find(params[:id])
-    @student = Student.find(@interview[:student_id])
-    @employer = Employer.find(@interview[:employer_id])
+      @interview = Interview.find(params[:id])
+      @student = Student.find(@interview[:student_id])
+      @employer = Employer.find(@interview[:employer_id])
     else
-    redirect_to new_user_path
+      redirect_to new_user_path
     end
   end
   
