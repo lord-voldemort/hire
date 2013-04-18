@@ -45,13 +45,13 @@
             <% @matches.each do |match| %>
             <h2>  
               <% if current_user.role == "Employer" %>
-                <% if ! Interview.find_by_sid_eid(@employer.id, match.id)%>  
+                <% if ! Interview.find_by_sid_eid(match.id, @employer.id)%>  
                   <button type="button" class="btn btn-primary"> 
                     <%= link_to '+ Interview', new_interview_path(@employer) %>
                   </button>
                 <% else %>
                   <button type="button" class="btn btn-primary"> 
-                    <%= link_to 'Edit Interview', edit_interview_path(Interview.find_by_sid_eid(@employer.id, match.id).id) %>
+                    <%= link_to 'Edit Interview', edit_interview_path(Interview.find_by_sid_eid(match.id, @employer.id).id) %>
                   </button>
                 <% end %>
               <%= link_to match.name, student_path(match.id) %>
