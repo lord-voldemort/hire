@@ -22,6 +22,7 @@ class SessionsController < ApplicationController
         employer = Employer.find_by_email(params[:email])
           if user && user.authenticate(params[:password])
             session[:user_id] = user.id
+            session[:email] = user.email
             flash[:notice] = "Logged in!"
             redirect_to employer_path(employer.id)
           else
@@ -48,7 +49,6 @@ class SessionsController < ApplicationController
   end
 
   def help
-    #redirect_to help_path
   end
 
 

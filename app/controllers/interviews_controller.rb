@@ -20,11 +20,11 @@ class InterviewsController < ApplicationController
   end
 
   def create
-    @interview = Interview.new(params[:interview])
+    @interview = Interview.new(params[:interview])  
     if @interview.save
     redirect_to interview_path(@interview.id)
     else
-      render 'new'
+    render 'new'
     end
   end
 
